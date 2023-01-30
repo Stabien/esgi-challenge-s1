@@ -32,7 +32,7 @@ services:
     depends_on:
       - php
     environment:
-      SERVER_NAME: ${SERVER_NAME:-localhost, caddy:80}
+      SERVER_NAME: ${SERVER_NAME:-localhost, caddy:86}
       MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeMe!}
       MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeMe!}
     restart: unless-stopped
@@ -42,8 +42,8 @@ services:
       - caddy_config:/config
     ports:
       # HTTP
-      - target: 80
-        published: ${HTTP_PORT:-80}
+      - target: 86
+        published: ${HTTP_PORT:-86}
         protocol: tcp
       # HTTPS
       - target: 443
