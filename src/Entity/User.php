@@ -40,9 +40,13 @@ class User
     #[ORM\Column]
     private ?int $role = null;
 
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Subscription::class)]
+    private Collection $subscriptions;
+
     public function __construct()
     {
         $this->bets = new ArrayCollection();
+        $this->subscriptions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -160,6 +164,36 @@ class User
     public function setRole(int $role): self
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Subscription>
+     */
+    public function getSubscriptions(): Collection
+    {
+        return $this->subscriptions;
+    }
+
+    public function addSubscription(Subscription $subscription): self
+    {
+        if (!$this->subscriptions->contains($subscription)) {
+            $this->subscriptions->add($subscription);
+            $subscription->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubscription(Subscription $subscription): self
+    {
+        if ($this->subscriptions->removeElement($subscription)) {
+            // set the owning side to null (unless already changed)
+            if ($subscription->getUserId() === $this) {
+                $subscription->setUserId(null);
+            }
+        }
 
         return $this;
     }
