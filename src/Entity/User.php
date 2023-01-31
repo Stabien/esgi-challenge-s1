@@ -17,9 +17,6 @@ class User
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $uuid = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $username = null;
 
     #[ORM\Column(length: 255)]
@@ -37,8 +34,11 @@ class User
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $credit_card_secret = null;
 
-    #[ORM\OneToMany(mappedBy: 'user_uuid', targetEntity: Bet::class)]
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Bet::class)]
     private Collection $bets;
+
+    #[ORM\Column]
+    private ?int $role = null;
 
     public function __construct()
     {
@@ -48,18 +48,6 @@ class User
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUuid(): ?string
-    {
-        return $this->uuid;
-    }
-
-    public function setUuid(string $uuid): self
-    {
-        $this->uuid = $uuid;
-
-        return $this;
     }
 
     public function getUsername(): ?string
@@ -146,7 +134,7 @@ class User
     {
         if (!$this->bets->contains($bet)) {
             $this->bets->add($bet);
-            $bet->setUserUuid($this);
+            $bet->setUserId($this);
         }
 
         return $this;
@@ -156,10 +144,22 @@ class User
     {
         if ($this->bets->removeElement($bet)) {
             // set the owning side to null (unless already changed)
-            if ($bet->getUserUuid() === $this) {
-                $bet->setUserUuid(null);
+            if ($bet->getUserId() === $this) {
+                $bet->setUserId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRole(): ?int
+    {
+        return $this->role;
+    }
+
+    public function setRole(int $role): self
+    {
+        $this->role = $role;
 
         return $this;
     }
