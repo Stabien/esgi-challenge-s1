@@ -1,14 +1,15 @@
 <?php 
 
 namespace App\Controller\Back; 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use GuzzleHttp\Client;
 
 // ...
 #[Route('/mail', name: 'mail')]
-class SendinblueController extends AbstractController 
+class SendinblueController extends AbstractController
 {
-    public function __construct()
+    public function sendMail()
     {
         $client = new Client();
 
