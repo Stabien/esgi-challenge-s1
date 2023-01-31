@@ -40,6 +40,10 @@ class Matchs
     #[ORM\ManyToOne]
     private ?Team $team_winner = null;
 
+    #[ORM\ManyToOne(inversedBy: 'matchs')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Competition $competition = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +141,18 @@ class Matchs
     public function setTeamWinner(?Team $team_winner): self
     {
         $this->team_winner = $team_winner;
+
+        return $this;
+    }
+
+    public function getCompetition(): ?Competition
+    {
+        return $this->competition;
+    }
+
+    public function setCompetition(?Competition $competition): self
+    {
+        $this->competition = $competition;
 
         return $this;
     }
