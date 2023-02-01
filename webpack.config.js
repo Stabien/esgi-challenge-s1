@@ -33,6 +33,8 @@ Encore
   .enableSingleRuntimeChunk()
   .enablePostCssLoader()
   .enableReactPreset()
+  // .addEntry("test", "./assets/react/controllers/test.tsx")
+  .enableTypeScriptLoader()
   /*
    * FEATURE CONFIG
    *
