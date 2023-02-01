@@ -31,7 +31,7 @@ class SendinblueController extends AbstractController
                 'json' => [
                     'sender' => [
                         'name' => 'Herve Herve',
-                        'email' => 'rv.cousin@test.com',
+                        'email' => 'rv.cousin@amazon.com',
                     ],
                     'to' => [
                         [
@@ -47,6 +47,7 @@ class SendinblueController extends AbstractController
 
         return new Response();
     }
+
 
 }
 
