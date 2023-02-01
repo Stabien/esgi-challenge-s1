@@ -1,14 +1,21 @@
-<?php 
+<?php
 
-namespace App\Controller\Back; 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+namespace App\Controller\Back; ;
 use GuzzleHttp\Client;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
-// ...
-#[Route('/mail', name: 'mail')]
 class SendinblueController extends AbstractController
 {
+    #[Route('/sendinblue', name: 'app_sendinblue')]
+    public function index(): Response
+    {
+        return $this->render('sendinblue/index.html.twig', [
+            'controller_name' => 'SendinblueController',
+        ]);
+    }
+    #[Route('/mail', name: 'mail')]
     public function sendMail()
     {
         $client = new Client();
@@ -18,13 +25,13 @@ class SendinblueController extends AbstractController
             [
                 'headers' => [
                     'accept' => 'application/json',
-                    'api-key' => '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',
+                    'api-key' => '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', // MODIFY THIS (PUBLICLY EXPOSED KEY) 
                     'content-type' => 'application/json',
                 ],
                 'json' => [
                     'sender' => [
                         'name' => 'Herve Herve',
-                        'email' => 'rv.cousin@test.com',
+                        'email' => 'rv.cousin@amazon.com',
                     ],
                     'to' => [
                         [
@@ -37,9 +44,11 @@ class SendinblueController extends AbstractController
                 ],
             ]
         );
+
+        return new Response();
     }
 
-    // TODO
+
 }
 
 
