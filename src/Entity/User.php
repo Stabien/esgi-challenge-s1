@@ -3,13 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,16 +17,10 @@ class User
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $uuid = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $username = null;
-
-    #[ORM\Column(length: 255)]
+    
+    #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $password = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $credit_card_number = null;
@@ -37,27 +31,34 @@ class User
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $credit_card_secret = null;
 
-    #[ORM\OneToMany(mappedBy: 'user_uuid', targetEntity: Bet::class)]
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Bet::class)]
     private Collection $bets;
 
-    public function __construct()
-    {
-        $this->bets = new ArrayCollection();
-    }
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Subscription::class)]
+    private Collection $subscriptions;
+
+    #[ORM\Column]
+    private array $roles = [];
+
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
+    private ?string $password = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUuid(): ?string
+    public function getEmail(): ?string
     {
-        return $this->uuid;
+        return $this->email;
     }
 
-    public function setUuid(string $uuid): self
+    public function setEmail(string $email): self
     {
-        $this->uuid = $uuid;
+        $this->email = $email;
 
         return $this;
     }
@@ -74,19 +75,39 @@ class User
         return $this;
     }
 
-    public function getEmail(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->email;
+        return (string) $this->email;
     }
 
-    public function setEmail(string $email): self
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->email = $email;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
         return $this->password;
     }
@@ -94,6 +115,36 @@ class User
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+        /**
+     * @return Collection<int, Subscription>
+     */
+    public function getSubscriptions(): Collection
+    {
+        return $this->subscriptions;
+    }
+
+    public function addSubscription(Subscription $subscription): self
+    {
+        if (!$this->subscriptions->contains($subscription)) {
+            $this->subscriptions->add($subscription);
+            $subscription->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubscription(Subscription $subscription): self
+    {
+        if ($this->subscriptions->removeElement($subscription)) {
+            // set the owning side to null (unless already changed)
+            if ($subscription->getUserId() === $this) {
+                $subscription->setUserId(null);
+            }
+        }
 
         return $this;
     }
@@ -146,7 +197,7 @@ class User
     {
         if (!$this->bets->contains($bet)) {
             $this->bets->add($bet);
-            $bet->setUserUuid($this);
+            $bet->setUserId($this);
         }
 
         return $this;
@@ -156,11 +207,20 @@ class User
     {
         if ($this->bets->removeElement($bet)) {
             // set the owning side to null (unless already changed)
-            if ($bet->getUserUuid() === $this) {
-                $bet->setUserUuid(null);
+            if ($bet->getUserId() === $this) {
+                $bet->setUserId(null);
             }
         }
 
         return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

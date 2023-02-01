@@ -16,17 +16,11 @@ class Team
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::GUID)]
-    private ?string $uuid = null;
-
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
     private ?string $logo = null;
-
-    #[ORM\OneToMany(mappedBy: 'team_one_uuid', targetEntity: Matchs::class)]
-    private Collection $matchs;
 
     public function __construct()
     {
@@ -36,18 +30,6 @@ class Team
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUuid(): ?string
-    {
-        return $this->uuid;
-    }
-
-    public function setUuid(string $uuid): self
-    {
-        $this->uuid = $uuid;
-
-        return $this;
     }
 
     public function getName(): ?string

@@ -14,19 +14,8 @@ class Matchs
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::GUID)]
-    private ?string $uuid = null;
-
     #[ORM\Column]
     private ?int $best_of = null;
-
-    #[ORM\ManyToOne(inversedBy: 'matchs')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?team $team_one_uuid = null;
-
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?team $team_two_uuid = null;
 
     #[ORM\Column]
     private ?float $team_one_rating = null;
@@ -41,23 +30,23 @@ class Matchs
     private ?int $team_two_score = null;
 
     #[ORM\ManyToOne]
-    private ?Team $team_winner_uuid = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Team $team_one = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Team $team_two = null;
+
+    #[ORM\ManyToOne]
+    private ?Team $team_winner = null;
+
+    #[ORM\ManyToOne(inversedBy: 'matchs')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Competition $competition = null;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUuid(): ?string
-    {
-        return $this->uuid;
-    }
-
-    public function setUuid(string $uuid): self
-    {
-        $this->uuid = $uuid;
-
-        return $this;
     }
 
     public function getBestOf(): ?int
@@ -68,30 +57,6 @@ class Matchs
     public function setBestOf(int $best_of): self
     {
         $this->best_of = $best_of;
-
-        return $this;
-    }
-
-    public function getTeamOneUuid(): ?team
-    {
-        return $this->team_one_uuid;
-    }
-
-    public function setTeamOneUuid(?team $team_one_uuid): self
-    {
-        $this->team_one_uuid = $team_one_uuid;
-
-        return $this;
-    }
-
-    public function getTeamTwoUuid(): ?team
-    {
-        return $this->team_two_uuid;
-    }
-
-    public function setTeamTwoUuid(?team $team_two_uuid): self
-    {
-        $this->team_two_uuid = $team_two_uuid;
 
         return $this;
     }
@@ -144,14 +109,50 @@ class Matchs
         return $this;
     }
 
-    public function getTeamWinnerUuid(): ?Team
+    public function getTeamOne(): ?Team
     {
-        return $this->team_winner_uuid;
+        return $this->team_one;
     }
 
-    public function setTeamWinnerUuid(?Team $team_winner_uuid): self
+    public function setTeamOne(?Team $team_one): self
     {
-        $this->team_winner_uuid = $team_winner_uuid;
+        $this->team_one = $team_one;
+
+        return $this;
+    }
+
+    public function getTeamTwo(): ?Team
+    {
+        return $this->team_two;
+    }
+
+    public function setTeamTwo(?Team $team_two): self
+    {
+        $this->team_two = $team_two;
+
+        return $this;
+    }
+
+    public function getTeamWinner(): ?Team
+    {
+        return $this->team_winner;
+    }
+
+    public function setTeamWinner(?Team $team_winner): self
+    {
+        $this->team_winner = $team_winner;
+
+        return $this;
+    }
+
+    public function getCompetition(): ?Competition
+    {
+        return $this->competition;
+    }
+
+    public function setCompetition(?Competition $competition): self
+    {
+        $this->competition = $competition;
 
         return $this;
     }
