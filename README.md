@@ -1,1 +1,1 @@
-TODO !! 2023/02/01 Wed.
+TODO !! 2023/02/01 Wednesday
