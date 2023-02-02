@@ -22,9 +22,13 @@ class Team
     #[ORM\Column(length: 255)]
     private ?string $logo = null;
 
+    #[ORM\OneToMany(mappedBy: 'team', targetEntity: TeamPlayer::class)]
+    private Collection $teamPlayers;
+
     public function __construct()
     {
         $this->matchs = new ArrayCollection();
+        $this->teamPlayers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -52,6 +56,36 @@ class Team
     public function setLogo(string $logo): self
     {
         $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TeamPlayer>
+     */
+    public function getTeamPlayers(): Collection
+    {
+        return $this->teamPlayers;
+    }
+
+    public function addTeamPlayer(TeamPlayer $teamPlayer): self
+    {
+        if (!$this->teamPlayers->contains($teamPlayer)) {
+            $this->teamPlayers->add($teamPlayer);
+            $teamPlayer->setTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTeamPlayer(TeamPlayer $teamPlayer): self
+    {
+        if ($this->teamPlayers->removeElement($teamPlayer)) {
+            // set the owning side to null (unless already changed)
+            if ($teamPlayer->getTeam() === $this) {
+                $teamPlayer->setTeam(null);
+            }
+        }
 
         return $this;
     }
