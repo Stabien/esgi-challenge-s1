@@ -17,6 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use App\Entity\EmailTemplate;
 
 class RegistrationController extends AbstractController
 {
@@ -48,11 +49,11 @@ class RegistrationController extends AbstractController
 
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-                (new TemplatedEmail())
-                    ->from(new Address('betsoflegends@test.com', 'Registration Email Bot'))
-                    ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
+                (new EmailTemplate())
+                    ->setFrom('betsoflegends@test.com')
+                    ->setTo($user->getEmail())
+                    ->setSubject('Please Confirm your Email')
+                    ->setHtmlTemplate('registration/confirmation_email.html.twig')
             );
 
             // do anything else you need here, like send an email

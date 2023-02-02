@@ -5,18 +5,11 @@ use GuzzleHttp\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\EmailTemplate;
 
 class SendinblueController extends AbstractController
 {
-    #[Route('/sendinblue', name: 'app_sendinblue')]
-    public function index(): Response
-    {
-        return $this->render('sendinblue/index.html.twig', [
-            'controller_name' => 'SendinblueController',
-        ]);
-    }
-    #[Route('/mail', name: 'mail')]
-    public function sendMail()
+    public function sendMail(EmailTemplate $email)
     {
         $client = new Client();
 
@@ -25,31 +18,24 @@ class SendinblueController extends AbstractController
             [
                 'headers' => [
                     'accept' => 'application/json',
-                    'api-key' => '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', // MODIFY THIS (PUBLICLY EXPOSED KEY) 
+                    'api-key' => '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', // MODIFY THIS (PUBLICLY EXPOSED KEY) 
                     'content-type' => 'application/json',
                 ],
                 'json' => [
                     'sender' => [
-                        'name' => 'Herve Herve',
-                        'email' => 'rv.cousin@amazon.com',
+                        'email' => $email->getFrom(),
                     ],
                     'to' => [
                         [
-                            'email' => 'rv.cousin@yahoo.fr',
-                            'name' => 'Herve Hervebis',
+                            'email' => $email->getTo(),
                         ],
                     ],
-                    'subject' => 'Ca marche !',
-                    'htmlContent' => '<html><head></head><body><p>Hello,</p>This is my first transactional email sent from Sendinblue.</p></body></html>',
+                    'subject' => $email->getSubject(),
+                    'htmlContent' => $email->getHtmlTemplate()
                 ],
             ]
         );
-
         return new Response();
     }
-
-
 }
-
-
 ?> 
