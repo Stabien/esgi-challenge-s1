@@ -50,7 +50,7 @@ class RegistrationController extends AbstractController
 
             $email = new EmailTemplate();
 
-            $email->addressFrom = 'betsoflegends@test.com';
+            $email->addressFrom = 'noreply@betsoflegends.com';
             $email->addressTo = 'bastien.piedallu@sfr.fr';
             $email->subject = 'Please Confirm your Email';
             $email->htmlTemplatePath = 'registration/confirmation_email.html.twig';
