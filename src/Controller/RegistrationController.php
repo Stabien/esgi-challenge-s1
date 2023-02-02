@@ -26,6 +26,7 @@ class RegistrationController extends AbstractController
     public function __construct(EmailVerifier $emailVerifier)
     {
         $this->emailVerifier = $emailVerifier;
+
     }
 
     #[Route('/register', name: 'app_register')]
@@ -47,14 +48,15 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+            $email = new EmailTemplate();
+
+            $email->addressFrom = 'betsoflegends@test.com';
+            $email->addressTo = 'bastien.piedallu@sfr.fr';
+            $email->subject = 'Please Confirm your Email';
+            $email->htmlTemplatePath = 'registration/confirmation_email.html.twig';
+
             // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-                (new EmailTemplate())
-                    ->setFrom('betsoflegends@test.com')
-                    ->setTo($user->getEmail())
-                    ->setSubject('Please Confirm your Email')
-                    ->setHtmlTemplate('registration/confirmation_email.html.twig')
-            );
+            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user, $email);
 
             // do anything else you need here, like send an email
 

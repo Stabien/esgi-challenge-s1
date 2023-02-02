@@ -11,15 +11,19 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 use App\Controller\Back\SendinblueController;
 use App\Entity\EmailTemplate;
-
+use Twig\Environment;
 
 class EmailVerifier
 {
+    private $twig;
+
     public function __construct(
         private VerifyEmailHelperInterface $verifyEmailHelper,
         private SendinblueController $mailer,
-        private EntityManagerInterface $entityManager
+        private EntityManagerInterface $entityManager,
+        Environment $twig
     ) {
+        $this->twig = $twig;
     }
 
     public function sendEmailConfirmation(string $verifyEmailRouteName, UserInterface $user, EmailTemplate $email): void
@@ -30,12 +34,11 @@ class EmailVerifier
             $user->getEmail()
         );
 
-        // $context = $email->getContext();
-        // $context['signedUrl'] = $signatureComponents->getSignedUrl();
-        // $context['expiresAtMessageKey'] = $signatureComponents->getExpirationMessageKey();
-        // $context['expiresAtMessageData'] = $signatureComponents->getExpirationMessageData();
-
-        // $email->context($context);
+        $email->htmlTemplate = $this->twig->render($email->htmlTemplatePath, [
+            'signedUrl' => $signatureComponents->getSignedUrl(),
+            'expiresAtMessageKey' => $signatureComponents->getExpirationMessageKey(),
+            'expiresAtMessageData' => $signatureComponents->getExpirationMessageData()
+        ]);
 
         $this->mailer->sendMail($email);
     }

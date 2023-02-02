@@ -18,24 +18,24 @@ class SendinblueController extends AbstractController
             [
                 'headers' => [
                     'accept' => 'application/json',
-                    'api-key' => $apiKey = getenv('SENDINBLUE_API_KEY'), // MODIFY THIS (PUBLICLY EXPOSED KEY) 
+                    'api-key' => $_ENV['APP_SENDINBLUE_API_KEY'], 
                     'content-type' => 'application/json',
                 ],
                 'json' => [
                     'sender' => [
-                        'email' => $email->getFrom(),
+                        'email' => $email->addressFrom,
                     ],
                     'to' => [
                         [
-                            'email' => $email->getTo(),
+                            'email' => $email->addressTo
                         ],
                     ],
-                    'subject' => $email->getSubject(),
-                    'htmlContent' => $email->getHtmlTemplate()
+                    'subject' => $email->subject,
+                    'htmlContent' => $email->htmlTemplate
                 ],
             ]
         );
         return new Response();
     }
 }
-?> 
+?>

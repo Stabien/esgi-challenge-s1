@@ -1,0 +1,2 @@
+parameters:
+    app.sendinblue_api_key: '%env(APP_SENDINBLUE_API_KEY)%'
