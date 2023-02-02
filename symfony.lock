@@ -263,6 +263,9 @@
             "config/packages/uid.yaml"
         ]
     },
+    "symfony/ux-react": {
+        "version": "v2.7.1"
+    },
     "symfony/validator": {
         "version": "6.2",
         "recipe": {
@@ -318,7 +321,7 @@
             "./package.json",
             "./webpack.config.js"
         ]
-     },
+    },
     "symfonycasts/verify-email-bundle": {
         "version": "v1.7.0"
     },
