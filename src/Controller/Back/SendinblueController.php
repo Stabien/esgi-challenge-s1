@@ -25,7 +25,7 @@ class SendinblueController extends AbstractController
             [
                 'headers' => [
                     'accept' => 'application/json',
-                    'api-key' => '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', // MODIFY THIS (PUBLICLY EXPOSED KEY) 
+                    'api-key' => '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', // MODIFY THIS (PUBLICLY EXPOSED KEY) 
                     'content-type' => 'application/json',
                 ],
                 'json' => [
