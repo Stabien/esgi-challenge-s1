@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Controller\Back; ;
+namespace App\Controller\Back;
+
 use GuzzleHttp\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
