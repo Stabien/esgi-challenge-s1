@@ -43,6 +43,11 @@ class EmailVerifier
         $this->mailer->sendMail($email);
     }
 
+    public function sendResetPwdEmail(EmailTemplate $email):void
+    {
+        $this->mailer->sendMail($email);
+    }
+
     /**
      * @throws VerifyEmailExceptionInterface
      */
