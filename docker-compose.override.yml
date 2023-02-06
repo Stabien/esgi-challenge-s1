@@ -33,12 +33,3 @@ services:
         published: 5432
         protocol: tcp
 ###< doctrine/doctrine-bundle ###
-
-###> symfony/mailer ###
-  mailer:
-    image: schickling/mailcatcher
-    ports: 
-      - 1025:1025 
-      - 1080:1080
-
-###< symfony/mailer ###
