@@ -27,6 +27,10 @@ class Bet
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\ManyToOne(inversedBy: 'bets')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Matchs $match = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,6 +80,18 @@ class Bet
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getMatch(): ?Matchs
+    {
+        return $this->match;
+    }
+
+    public function setMatch(?Matchs $match): self
+    {
+        $this->match = $match;
 
         return $this;
     }

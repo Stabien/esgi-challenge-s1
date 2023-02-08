@@ -25,6 +25,10 @@ class Team
     #[ORM\OneToMany(mappedBy: 'team', targetEntity: TeamPlayer::class)]
     private Collection $teamPlayers;
 
+    #[ORM\ManyToOne(inversedBy: 'teams')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Region $region = null;
+
     public function __construct()
     {
         $this->matchs = new ArrayCollection();
@@ -86,6 +90,18 @@ class Team
                 $teamPlayer->setTeam(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRegion(): ?Region
+    {
+        return $this->region;
+    }
+
+    public function setRegion(?Region $region): self
+    {
+        $this->region = $region;
 
         return $this;
     }
