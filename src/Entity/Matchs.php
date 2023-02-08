@@ -49,6 +49,9 @@ class Matchs
     #[ORM\OneToMany(mappedBy: 'match', targetEntity: Bet::class)]
     private Collection $bets;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $date = null;
+
     public function __construct()
     {
         $this->bets = new ArrayCollection();
@@ -193,6 +196,18 @@ class Matchs
                 $bet->setMatch(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(?\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }
