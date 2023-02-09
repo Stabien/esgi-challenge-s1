@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Region;
 
 #[ORM\Entity(repositoryClass: TeamRepository::class)]
 class Team
@@ -33,6 +34,11 @@ class Team
     {
         $this->matchs = new ArrayCollection();
         $this->teamPlayers = new ArrayCollection();
+    }
+
+    public function __toString() 
+    {
+        return $this->name;
     }
 
     public function getId(): ?int

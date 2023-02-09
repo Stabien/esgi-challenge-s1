@@ -26,13 +26,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $credit_card_number = null;
+    private ?string $creditCardNumber = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $credit_card_expiration = null;
+    private ?string $creditCardExpiration = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $credit_card_secret = null;
+    private ?string $creditCardSecret = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Bet::class)]
     private Collection $bets;
@@ -51,6 +51,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+
+    public function __toString()
+    {
+        return $this->email;
+    }
 
     public function getId(): ?int
     {
@@ -157,36 +162,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getCreditCardNumber(): ?string
     {
-        return $this->credit_card_number;
+        return $this->creditCardNumber;
     }
 
-    public function setCreditCardNumber(?string $credit_card_number): self
+    public function setCreditCardNumber(?string $creditCardNumber): self
     {
-        $this->credit_card_number = $credit_card_number;
+        $this->creditCardNumber = $creditCardNumber;
 
         return $this;
     }
 
     public function getCreditCardExpiration(): ?string
     {
-        return $this->credit_card_expiration;
+        return $this->creditCardExpiration;
     }
 
-    public function setCreditCardExpiration(?string $credit_card_expiration): self
+    public function setCreditCardExpiration(?string $creditCardExpiration): self
     {
-        $this->credit_card_expiration = $credit_card_expiration;
+        $this->creditCardExpiration = $creditCardExpiration;
 
         return $this;
     }
 
     public function getCreditCardSecret(): ?string
     {
-        return $this->credit_card_secret;
+        return $this->creditCardSecret;
     }
 
-    public function setCreditCardSecret(?string $credit_card_secret): self
+    public function setCreditCardSecret(?string $creditCardSecret): self
     {
-        $this->credit_card_secret = $credit_card_secret;
+        $this->creditCardSecret = $creditCardSecret;
 
         return $this;
     }
