@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit TeamPlayer{% endblock %}
+
+{% block body %}
+    <h1>Edit TeamPlayer</h1>
+
+    {{ include('admin/team_player/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_admin_team_player_index') }}">admin to list</a>
+
+    {{ include('admin/team_player/_delete_form.html.twig') }}
+{% endblock %}
