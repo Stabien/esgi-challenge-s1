@@ -31,6 +31,10 @@ class Bet
     #[ORM\JoinColumn(nullable: false)]
     private ?Matchs $match = null;
 
+    #[ORM\ManyToOne(inversedBy: 'bets')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Team $team = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,6 +96,18 @@ class Bet
     public function setMatch(?Matchs $match): self
     {
         $this->match = $match;
+
+        return $this;
+    }
+
+    public function getTeam(): ?Team
+    {
+        return $this->team;
+    }
+
+    public function setTeam(?Team $team): self
+    {
+        $this->team = $team;
 
         return $this;
     }

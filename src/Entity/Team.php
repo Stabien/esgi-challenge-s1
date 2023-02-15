@@ -30,10 +30,14 @@ class Team
     #[ORM\JoinColumn(nullable: false)]
     private ?Region $region = null;
 
+    #[ORM\OneToMany(mappedBy: 'team', targetEntity: Bet::class)]
+    private Collection $bets;
+
     public function __construct()
     {
         $this->matchs = new ArrayCollection();
         $this->teamPlayers = new ArrayCollection();
+        $this->bets = new ArrayCollection();
     }
 
     public function __toString() 
@@ -108,6 +112,36 @@ class Team
     public function setRegion(?Region $region): self
     {
         $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Bet>
+     */
+    public function getBets(): Collection
+    {
+        return $this->bets;
+    }
+
+    public function addBet(Bet $bet): self
+    {
+        if (!$this->bets->contains($bet)) {
+            $this->bets->add($bet);
+            $bet->setTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBet(Bet $bet): self
+    {
+        if ($this->bets->removeElement($bet)) {
+            // set the owning side to null (unless already changed)
+            if ($bet->getTeam() === $this) {
+                $bet->setTeam(null);
+            }
+        }
 
         return $this;
     }
