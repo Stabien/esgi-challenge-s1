@@ -3,7 +3,15 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
+<style>
+.hero{
+        height:400px;
+position:relative;
+
+}
+
+</style>
+<form method="post" class="flex flex-col items-center gap-16 text-center mt-24 ">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -13,16 +21,21 @@
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
+<div class="text-dark-blue">
+        <h1 class="text-5xl font-bold mb-3 font-weight-normal ">LOGIN</h1>
+        <h2 class=""> Don't have an account ?</h2>
+</div>
+<div class="flex flex-col gap-6">
+    {# <label for="inputEmail">Email</label> #}
+    <input type="email" value="{{ last_username }}" placeholder="Email" name="email" id="inputEmail" class="form-control bg-gray-100 px-2 py-1 rounded	outline-0" autocomplete="email" required autofocus>
+    {# <label for="inputPassword">Password</label> #}
+    <input type="password" name="password" placeholder="Password" id="inputPassword" * autocomplete="current-password" required class="form-control bg-gray-100 px-2 py-1 rounded	outline-0">
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
+</div>
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -38,5 +51,10 @@
     <button class="btn btn-lg btn-primary" type="submit">
         Sign in
     </button>
+    <div class="hero">
+        <div class="hero-background h-1/2 w-1/2 border-8 border-gold absolute top-1/2 left-1/2 rotate-45 -translate-y-1/2 -translate-x-1/2 "></div>
+        <img src="./assets/images/assassin.png" class="hero h-full" alt="image" />
+    </div>
+
 </form>
 {% endblock %}

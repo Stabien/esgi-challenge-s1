@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TestController!{% endblock %}
+
+{% block body %}
+<style>
+body{
+    overflow:hidden;
+}
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .landscape{
+            width:100vw;
+            position:absolute;
+            bottom:0;
+            left:0;
+            height:70vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position:0% -15%;
+    }
+    .one{
+        background-image:url('./assets/images/vallee.png');
+    }
+    .two{
+        background-image:linear-gradient(rgba(255, 255, 255, 0) 0%, #0d1626 100%), url('./assets/images/sol.png');
+    }
+</style>    
+
+    {# <div {{ react_component('Footer', {}) }}></div> #}
+<div class="example-wrapper ">
+   <footer class="footer bg-red-500 w-screen "> 
+        <div class="landscape one "></div>
+        <div class="landscape two"></div>
+   </footer>
+</div>
+
+{% endblock %}

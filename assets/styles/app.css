@@ -1,7 +1,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-body {
-  background-color: lightgray;
+:root {
+  --blue-primary-color: #0ac7b8;
+  --blue-secondary-color: #ccf9f9;
+  --gold-primary-color: #c79a3c;
+  --gold-secondary-color: #efe5d1;
 }
+
+.text-dark-blue {
+  color: #010a13;
+}
+
+.bg-dark-blue {
+  background-color: #010a13;
+}
+
+.border-gold {
+  border-color: var(--gold-primary-color);
+}
+
+.btn {
+  position: relative; /* this one is new - used to contain absolute elements */
+  padding: 1rem 5rem;
+  color: var(--blue-primary-color);
+  background-color: var(--blue-secondary-color);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn.gold {
+  color: var(--gold-primary-color);
+  background-color: var(--gold-secondary-color);
+}
+.btn:after, .btn:before {
+  transition: 0.5s;
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: #fff; /* to see where it is */
+}
+.btn:before {
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.btn:after {
+  bottom: 0;
+  right: 0;
+  transform: translate(50%, 50%) rotate(45deg);
+}
+.btn:hover:before {
+  top: -40px;
+  left: -40px;
+}
+.btn:hover:after {
+  bottom: -40px;
+  right: -40px;
+}/*# sourceMappingURL=app.css.map */
