@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Controller\Back;
+namespace App\Controller;
 
 use GuzzleHttp\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\EmailTemplate;
 
 class SendinblueController extends AbstractController
 {
-    public function sendMail(EmailTemplate $email)
+    public function sendMail(EmailTemplate $email): Response
     {
         $client = new Client();
 
@@ -39,4 +38,3 @@ class SendinblueController extends AbstractController
         return new Response();
     }
 }
-?>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\User;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,7 +11,7 @@ class TeamsController extends AbstractController
     #[Route('/teams', name: 'app_teams')]
     public function index(): Response
     {
-        return $this->render('teams/index.html.twig', [
+        return $this->render('user/teams/index.html.twig', [
             'controller_name' => 'TeamsController',
         ]);
     }

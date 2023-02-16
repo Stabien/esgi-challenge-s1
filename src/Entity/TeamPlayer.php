@@ -31,6 +31,11 @@ class TeamPlayer
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
+    public function __toString(): string 
+    {
+        return $this->nickname;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

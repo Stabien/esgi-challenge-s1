@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\User;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
@@ -26,7 +26,6 @@ class RegistrationController extends AbstractController
     public function __construct(EmailVerifier $emailVerifier)
     {
         $this->emailVerifier = $emailVerifier;
-
     }
 
     #[Route('/register', name: 'app_register')]
@@ -53,21 +52,21 @@ class RegistrationController extends AbstractController
             $email->addressFrom = 'noreply@betsoflegends.com';
             $email->addressTo = $user->getEmail();
             $email->subject = 'Please Confirm your Email';
-            $email->htmlTemplatePath = 'registration/confirmation_email.html.twig';
+            $email->htmlTemplatePath = 'user/registration/confirmation_email.html.twig';
 
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user, $email);
 
             // do anything else you need here, like send an email
 
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
+            // return $userAuthenticator->authenticateUser(
+            //     $user,
+            //     $authenticator,
+            //     $request
+            // );
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('user/registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
