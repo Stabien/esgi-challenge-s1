@@ -17,6 +17,7 @@ class BetType extends AbstractType
             ->add('earnings')
             ->add('user')
             ->add('match')
+            ->add('team')
         ;
     }
 
