@@ -27,9 +27,9 @@ position:relative;
 </div>
 <div class="flex flex-col gap-6">
     {# <label for="inputEmail">Email</label> #}
-    <input type="email" value="{{ last_username }}" placeholder="Email" name="email" id="inputEmail" class="form-control bg-gray-100 px-2 py-1 rounded	outline-0" autocomplete="email" required autofocus>
+    <input type="email" value="{{ last_username }}" placeholder="Email" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
     {# <label for="inputPassword">Password</label> #}
-    <input type="password" name="password" placeholder="Password" id="inputPassword" * autocomplete="current-password" required class="form-control bg-gray-100 px-2 py-1 rounded	outline-0">
+    <input type="password" name="password" placeholder="Password" id="inputPassword" * autocomplete="current-password" required class="form-control">
 
 
     <input type="hidden" name="_csrf_token"
@@ -48,7 +48,7 @@ position:relative;
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
+    <button class="btn primary" type="submit">
         Sign in
     </button>
     <div class="hero">

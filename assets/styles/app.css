@@ -29,10 +29,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+.btn.primary {
+  background-color: var(--blue-primary-color);
+  color: var(--blue-secondary-color);
 }
 .btn.gold {
   color: var(--gold-primary-color);
   background-color: var(--gold-secondary-color);
+}
+.btn.gold.primary {
+  background-color: var(--gold-primary-color);
+  color: var(--gold-secondary-color);
 }
 .btn:after, .btn:before {
   transition: 0.5s;
@@ -59,4 +69,10 @@
 .btn:hover:after {
   bottom: -40px;
   right: -40px;
+}
+
+input[type=email],
+input[type=password],
+input[type=text] {
+  @apply bg-gray-100 px-2 py-1 rounded	outline-0;
 }/*# sourceMappingURL=app.css.map */
