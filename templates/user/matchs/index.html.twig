@@ -55,9 +55,9 @@
   </ul>
   <div
     id="bet-modal"
-    class="fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full z-index-10"
+    class="fixed top-0 left-0 right-0 z-50 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full"
   >
-    <div class="relative w-full h-full max-w-md md:h-auto">
+    <div class="relative w-full h-full max-w-md md:h-auto modal-content">
       <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
         <button
           type="button"
@@ -101,6 +101,7 @@
   const iconCloseBetModal = document.getElementsByClassName('icon-close-bet-modal')[0]
   const matchInput = document.getElementsByClassName('match-input')[0]
   const teamInput = document.getElementsByClassName('team-input')[0]
+  const modalContent = document.getElementsByClassName('modal-content')[0]
 
   const closeModal = () => {
     modal.style.display = 'none'
@@ -128,7 +129,7 @@
   iconCloseBetModal.addEventListener('click', closeModal)
 
   document.addEventListener('click', (e) => {
-    if (e.target === betModalBackground) {
+    if (e.target === modal) {
       closeModal()
     }
   })

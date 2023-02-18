@@ -18,7 +18,7 @@ class MatchsController extends AbstractController
     {
         $this->doctrine = $doctrine;
     }
-
+    
     #[Route('/matchs', name: 'app_user_matchs')]
     public function index(Request $request, BetRepository $betRepository): Response
     {
