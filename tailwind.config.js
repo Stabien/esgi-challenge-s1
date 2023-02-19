@@ -16,6 +16,10 @@ module.exports = {
           50: "#010a13",
           150: "#0D1626",
         },
+        gradient: {
+          150: "#15395E",
+          250: "#AA2A16",
+        },
       },
       fontFamily: {
         beaufort: ["beaufort"],
