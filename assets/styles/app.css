@@ -70,3 +70,10 @@ input[type=password],
 input[type=text] {
   @apply bg-gray-100 px-2 py-1 rounded	outline-0;
 }
+
+.matches h1 {
+  @apply font-beaufort text-gold-150 text-5xl font-bold italic underline;
+}
+.matches ul {
+  @apply mb-24;
+}

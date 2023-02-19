@@ -28,3 +28,5 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 esgi-challenge.pem
+
+migrations/*

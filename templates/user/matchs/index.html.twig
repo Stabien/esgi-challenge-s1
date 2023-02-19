@@ -8,7 +8,7 @@
     .example-wrapper code { adminground: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper flex flex-col gap-8">
+<div class="matches example-wrapper flex flex-col gap-2">
 <h1>Incomings matches </h1>
     <ul>
     {#  incoming matchs #}
@@ -35,11 +35,11 @@
             </div>
             {# Buttons #}
             <div class="grid-cols-2 grid w-full font-beaufort gap-1  text-xl z-20">
-                <button class="bg-gold-150  rounded-bl-3xl flex justify-between items-center  py-1 px-4">
+                <button class="bg-gold-150 active:bg-gold-250  rounded-bl-3xl flex justify-between items-center  py-1 px-4">
                     <span class="text-darkBlue-50  font-black">{{ match.teamOne }}</span>
                     <span class="text-2xl font-black"> 1.5</span>
                 </button>
-                <button class="bg-gold-150 w-full rounded-br-3xl flex justify-between py-1 px-4">
+                <button class="bg-gold-150 active:bg-gold-250 w-full rounded-br-3xl flex justify-between py-1 px-4">
                     <span class="text-2xl font-black">2.2</span>
                     <span class="text-darkBlue-50  font-black">{{ match.teamTwo }}</span>
                 </button>

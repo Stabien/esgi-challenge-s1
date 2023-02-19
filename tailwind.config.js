@@ -11,6 +11,7 @@ module.exports = {
         gold: {
           50: "#efe5d1",
           150: "#c79a3c",
+          250: "#785A28",
         },
         darkBlue: {
           50: "#010a13",
