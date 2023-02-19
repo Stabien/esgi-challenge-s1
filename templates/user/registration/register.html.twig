@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Register{% endblock %}
-
 {% block body %}
 <style>
 .hero{
@@ -17,7 +16,7 @@ position:relative;
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1 class="text-dark-blue text-5xl font-bold mb-3 font-weight-normal">Register</h1>
+    <h1 class="text-darkBlue-50 text-5xl font-bold mb-3 font-weight-normal">Register</h1>
 
     <form class=" flex flex-col items-center gap-8">
     {{ form_start(registrationForm)  }}
@@ -37,7 +36,7 @@ position:relative;
     {{ form_end(registrationForm) }}
     <form>
     <div class="hero">
-        <div class="hero-background h-1/2 w-1/2 border-8 border-gold absolute top-1/2 left-1/2 rotate-45 -translate-y-1/2 -translate-x-1/2 "></div>
+        <div class="hero-background h-1/2 w-1/2 border-8 border-gold-150 absolute top-1/2 left-1/2 rotate-45 -translate-y-1/2 -translate-x-1/2 "></div>
         <img src="./assets/images/assassin2.png" class="hero h-full" alt="image" />
     </div>
     </div>

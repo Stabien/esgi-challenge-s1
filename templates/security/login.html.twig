@@ -12,16 +12,14 @@ position:relative;
 
 </style>
 <form method="post" class="flex flex-col items-center gap-16 text-center mt-24 ">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+   
 
     {% if app.user %}
         <div class="mb-3">
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
-<div class="text-dark-blue">
+<div class="text-darkBlue-50">
         <h1 class="text-5xl font-bold mb-3 font-weight-normal ">LOGIN</h1>
         <h2 class=""> Don't have an account ?</h2>
 </div>
@@ -36,6 +34,9 @@ position:relative;
            value="{{ csrf_token('authenticate') }}"
     >
 </div>
+ {% if error %}
+        <div class="alert alert-danger text-red-500">{{ error.messageKey|trans(error.messageData, 'security') }}*</div>
+    {% endif %}
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -52,7 +53,7 @@ position:relative;
         Sign in
     </button>
     <div class="hero">
-        <div class="hero-background h-1/2 w-1/2 border-8 border-gold absolute top-1/2 left-1/2 rotate-45 -translate-y-1/2 -translate-x-1/2 "></div>
+        <div class="hero-background h-1/2 w-1/2 border-8 border-gold-150 absolute top-1/2 left-1/2 rotate-45 -translate-y-1/2 -translate-x-1/2 "></div>
         <img src="./assets/images/assassin.png" class="hero h-full" alt="image" />
     </div>
 

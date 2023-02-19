@@ -1,23 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: "beaufort";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/BeaufortforLOL-Regular.ttf"); /* IE9 Compat Modes */
+}
 :root {
   --blue-primary-color: #0ac7b8;
   --blue-secondary-color: #ccf9f9;
   --gold-primary-color: #c79a3c;
   --gold-secondary-color: #efe5d1;
-}
-
-.text-dark-blue {
-  color: #010a13;
-}
-
-.bg-dark-blue {
-  background-color: #010a13;
-}
-
-.border-gold {
-  border-color: var(--gold-primary-color);
 }
 
 .btn {
@@ -75,4 +69,4 @@ input[type=email],
 input[type=password],
 input[type=text] {
   @apply bg-gray-100 px-2 py-1 rounded	outline-0;
-}/*# sourceMappingURL=app.css.map */
+}

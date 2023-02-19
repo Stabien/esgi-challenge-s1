@@ -8,17 +8,35 @@
     .example-wrapper code { adminground: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
+<div class="example-wrapper flex flex-col gap-8">
     <ul>
     {% for match in matchs %}
-        <li class="border-2 border-black-200 mt-2">
-        <div>
-            {{ match.teamOne }} - {{ match.teamTwo }}
-            <div>
-                <button>{{ match.teamOneRating }}</button>
-                <button>{{ match.teamTwoRating }}</button>
-            </div>  
+
+        <div class="flex justify-between">
+            <div class=" bg-gold-150 text-white inline-block px-4 py-1 pb-6 translate-y-6 font-beaufort font-black italic tracking-widest">
+            {{match.competition}}
+            </div>
+            <div class=" bg-gold-150 text-white inline-block px-4 py-1 pb-6 translate-y-6 font-beaufort font-black italic tracking-widest">  {{match.date}}</div>
+            {# <img src={{match.teamOne.logo}} crossorigin="anonymous" referrerpolicy="no-referrer" alt="logo"> #}
         </div>
+        <li class="rounded-3xl relative   bg-gradient-to-br from-darkBlue-50 to-darkBlue-150 text-white flex flex-col gap-4 items-center w-full">
+            <div class="flex p-4">
+            {{ match.teamOne }} - {{ match.teamTwo }}
+                <div>
+                    <button>{{ match.teamOneRating }}</button>
+                    <button>{{ match.teamTwoRating }}</button>
+                </div>  
+            </div>
+            <div class="grid-cols-2 grid w-full font-beaufort gap-1  text-xl">
+                <button class="bg-gold-150  rounded-bl-3xl flex justify-between items-center  py-1 px-4">
+                    <span class="text-darkBlue-50  font-black">{{ match.teamOne }}</span>
+                    <span class="text-2xl font-black"> 1.5</span>
+                </button>
+                <button class="bg-gold-150 w-full rounded-br-3xl flex justify-between py-1 px-4">
+                    <span class="text-2xl font-black">2.2</span>
+                    <span class="text-darkBlue-50  font-black">{{ match.teamTwo }}</span>
+                </button>
+            </div>
         </li>
     {% endfor %}
 </ul>
