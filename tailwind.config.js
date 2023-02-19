@@ -20,6 +20,9 @@ module.exports = {
       fontFamily: {
         beaufort: ["beaufort"],
       },
+      gridTemplateColumns: {
+        match: "1fr auto 1fr",
+      },
     },
   },
   plugins: [],
