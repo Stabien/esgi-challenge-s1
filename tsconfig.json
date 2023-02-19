@@ -1,21 +1,16 @@
 {
-    "compilerOptions": {
-      "target": "es5",
-      "module": "commonjs",
-      "declaration": true,
-      "outDir": "public/js/dist",
-      "strict": true,
-      "jsx": "react",
-      "noImplicitAny": false,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true
-    },
-    "include": [
-      "./assets/**/*"
-    ],
-    "exclude": [
-      "node_modules",
-      "public/js/dist"
-    ]
-  }
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "public/js/dist",
+    "strict": true,
+    "jsx": "react",
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["./assets/**/*", "public/js/userMatchs.js"],
+  "exclude": ["node_modules", "public/js/dist"]
+}

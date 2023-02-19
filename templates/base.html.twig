@@ -11,10 +11,18 @@
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
-<script src="https://js.stripe.com/v3/"></script>
         {% endblock %}
     </head>
     <body>
+        <nav>
+            <ul class="flex flex-row justify-between">
+                <li><a href="#">My bets</a></li>
+                <li><a href="/matchs">Matchs</a></li>
+                <li><a href="/teams">Teams</a></li>
+                <li><a href="/profile">My Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
         {% block body %}{% endblock %}
         {# templates/sendinblue/form.html.twig #}
     </body>

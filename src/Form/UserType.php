@@ -2,29 +2,32 @@
 
 namespace App\Form;
 
-use App\Entity\Bet;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class BetType extends AbstractType
+class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('amount')
-            ->add('status')
-            ->add('earnings')
-            ->add('user')
-            ->add('match')
-            ->add('team')
+            ->add('username')
+            ->add('email')
+            ->add('creditCardNumber')
+            ->add('creditCardExpiration')
+            ->add('creditCardSecret')
+            ->add('roles')
+            ->add('password')
+            ->add('isVerified')
+            ->add('balance')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Bet::class,
+            'data_class' => User::class,
         ]);
     }
 }

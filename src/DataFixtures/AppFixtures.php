@@ -23,6 +23,7 @@ class AppFixtures extends Fixture
             ->setEmail('user@user.fr')
             ->setPassword($pwd)
             ->setRoles(["ROLE_USER"])
+            ->setBalance(0)
         ;
         $manager->persist($object);
 
@@ -30,6 +31,7 @@ class AppFixtures extends Fixture
             ->setEmail('admin@user.fr')
             ->setPassword($pwd)
             ->setRoles(["ROLE_ADMIN"])
+            ->setBalance(0)
         ;
         $manager->persist($object);
 
@@ -37,6 +39,7 @@ class AppFixtures extends Fixture
             ->setEmail('moderator@user.fr')
             ->setPassword($pwd)
             ->setRoles(["ROLE_MODERATOR"])
+            ->setBalance(0)
         ;
         $manager->persist($object);
 

@@ -1,11 +1,18 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello MatchsController!{% endblock %}
+{% extends 'base.html.twig' %} 
+{% block title %}Hello MatchsController! {% endblock %} 
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { adminground: #F5F5F5; padding: 2px 6px; }
+  .example-wrapper {
+    margin: 1em auto;
+    max-width: 800px;
+    width: 95%;
+    font: 18px / 1.5 sans-serif;
+  }
+  .example-wrapper code {
+    adminground: #f5f5f5;
+    padding: 2px 6px;
+  }
 </style>
 
 <div class="matches example-wrapper flex flex-col gap-2">
@@ -35,11 +42,23 @@
             </div>
             {# Buttons #}
             <div class="grid-cols-2 grid w-full font-beaufort gap-1  text-xl z-20">
-                <button class="bg-gold-150 active:bg-gold-250  rounded-bl-3xl flex justify-between items-center  py-1 px-4">
+                <button 
+                data-match-id="{{
+            match.id
+            }}"
+            data-team-id="{{
+            match.teamOne.id
+            }}"
+                 class="bg-gold-150 active:bg-gold-250  rounded-bl-3xl flex justify-between items-center  py-1 px-4">
                     <span class="text-darkBlue-50  font-black">{{ match.teamOne }}</span>
                     <span class="text-2xl font-black"> 1.5</span>
                 </button>
-                <button class="bg-gold-150 active:bg-gold-250 w-full rounded-br-3xl flex justify-between py-1 px-4">
+                <button  data-match-id="{{
+            match.id
+            }}"
+            data-team-id="{{
+            match.teamTwo.id
+            }}" class="bg-gold-150 active:bg-gold-250 w-full rounded-br-3xl flex justify-between py-1 px-4">
                     <span class="text-2xl font-black">2.2</span>
                     <span class="text-darkBlue-50  font-black">{{ match.teamTwo }}</span>
                 </button>
@@ -81,6 +100,87 @@
             </div>
         </li>
     {% endfor %}
-</ul>
+  </ul>
+  <div
+    id="bet-modal"
+    class="fixed top-0 left-0 right-0 z-50 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full"
+  >
+    <div class="relative w-full h-full max-w-md md:h-auto modal-content">
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <button
+          type="button"
+          class="icon-close-bet-modal absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+          data-modal-hide="popup-modal"
+        >
+          <svg
+            aria-hidden="true"
+            class="w-5 h-5"
+            fill="currentColor"
+            viewbox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+          <span class="sr-only">Close modal</span>
+        </button>
+        <div class="p-6 text-center">
+          {{ form_start(form) }}
+            {{ form_row(form.amount) }}
+            <input type="hidden" value="" name="bet[match]" class="match-input"/>
+            <input type="hidden" value="" name="bet[team]" class="team-input"/>
+            {{ form_row(form._token) }}
+            <button class="btn">{{ button_label|default('Save') }}</button>
+          {{ form_end(form, {'render_rest': false}) }}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-{% endblock %}
+<div class="bet-modal-background fixed top-0 left-0 w-screen h-screen bg-black opacity-50"></div>
+
+<script>
+  const toggleModalButtons = document.getElementsByClassName('toggle-bet-modal')
+  const modal = document.getElementById('bet-modal')
+  const betModalBackground = document.getElementsByClassName('bet-modal-background')[0]
+  const iconCloseBetModal = document.getElementsByClassName('icon-close-bet-modal')[0]
+  const matchInput = document.getElementsByClassName('match-input')[0]
+  const teamInput = document.getElementsByClassName('team-input')[0]
+  const modalContent = document.getElementsByClassName('modal-content')[0]
+
+  const closeModal = () => {
+    modal.style.display = 'none'
+    betModalBackground.style.display = 'none'
+  }
+
+  const openModal = (target) => {
+    const matchId = target.getAttribute('data-match-id')
+    const teamId = target.getAttribute('data-team-id')
+
+    modal.style.display = 'block'
+    betModalBackground.style.display = 'block'
+    matchInput.value = matchId
+    teamInput.value = teamId
+  }
+
+  closeModal()
+
+  for (const button of toggleModalButtons) {
+    button.addEventListener('click', (e) => {
+      openModal(e.target)
+    })
+  }
+
+  iconCloseBetModal.addEventListener('click', closeModal)
+
+  document.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal()
+    }
+  })
+</script>
+
+{% endblock %} 
