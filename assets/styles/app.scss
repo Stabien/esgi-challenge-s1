@@ -93,8 +93,29 @@ input[type='hidden'] {
   }
 }
 
-.nav {
-  li {
-    @apply after:transition-all hover:after:w-full relative after:absolute after:-bottom-px after:left-0 after:content-[''] after:w-0 after:h-0.5 after:bg-gold-150;
+.nav li,
+#menu-side li {
+  @apply text-gold-150 after:transition-all text-xl font-bold hover:after:w-full w-fit
+   relative after:absolute after:-bottom-px after:left-0 after:content-[''] after:w-0 after:h-0.5 after:bg-gold-150;
+}
+
+#menu-burger {
+  &.checked {
+    span:first-of-type {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    span:nth-of-type(2) {
+      opacity: 0;
+    }
+    span:last-of-type {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
   }
+  span {
+    @apply block h-1 w-6 bg-gold-150 m-1  transition-all;
+  }
+}
+
+.show {
+  @apply flex;
 }
