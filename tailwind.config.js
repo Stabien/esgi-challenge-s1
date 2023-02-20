@@ -29,7 +29,8 @@ module.exports = {
         match: '1fr auto 1fr',
       },
       zIndex: {
-        999: '9999',
+        999: '999',
+        9999: '9999',
       },
     },
   },

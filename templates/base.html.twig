@@ -13,15 +13,18 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
-        <nav>
-            <ul class="flex flex-row justify-between">
-                <li><a href="#">My bets</a></li>
-                <li><a href="/matchs">Matchs</a></li>
-                <li><a href="/teams">Teams</a></li>
-                <li><a href="/profile">My Profile</a></li>
-                <li><a href="/logout">Logout</a></li>
-            </ul>
+    <body class="mt-32">
+        <nav class='fixed z-9999 top-0 py-3 px-8 bg-darkBlue-150 w-full text-gold-150 font-beaufort flex justify-between items-center'>
+        <div class="text-3xl">
+        <img src="/assets/images/logo.svg" alt="logo" class="h-16">
+        </div>
+        <ul class="nav flex gap-8 text-xl font-bold">
+            <li><a href="#">My bets</a></li>
+            <li><a href="/matchs">Matchs</a></li>
+            <li><a href="/teams">Teams</a></li>
+            <li><a href="/profile">My Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
         </nav>
         {% block body %}{% endblock %}
         {# templates/sendinblue/form.html.twig #}

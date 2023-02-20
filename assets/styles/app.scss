@@ -16,8 +16,9 @@
   --gold-primary-color: #c79a3c;
   --gold-secondary-color: #efe5d1;
 }
-body {
-  //   background-color: lightgray;
+* {
+  margin: 0;
+  padding: 0;
 }
 
 .btn {
@@ -89,5 +90,11 @@ input[type='hidden'] {
   }
   ul {
     @apply mb-24;
+  }
+}
+
+.nav {
+  li {
+    @apply after:transition-all hover:after:w-full relative after:absolute after:-bottom-px after:left-0 after:content-[''] after:w-0 after:h-0.5 after:bg-gold-150;
   }
 }
