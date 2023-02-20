@@ -18,18 +18,21 @@ class ProfileController extends AbstractController
         $this->doctrine = $doctrine;
     }
 
-    
     #[Route('/profile', name: 'app_user_profile')]
     public function index(Request $request, UserRepository $userRepository): Response
     {
         $user = $this->getUser();
 
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
+        $formDeposit = $this->createForm(UserType::class, $user);
+        $formDeposit->handleRequest($request);
+
+        $formWithdrawal = $this->createForm(UserType::class, $user);
+        $formWithdrawal->handleRequest($request);
 
         return $this->render('user/profile/index.html.twig', [
             'controller_name' => 'ProfileController',
-            'form' => $form,
+            'formDeposit' => $formDeposit,
+            'formWithdrawal' => $formWithdrawal,
             'user' => $user
         ]);
     }

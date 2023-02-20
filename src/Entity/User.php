@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\DBAL\Types\Types;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -26,12 +28,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Regex(
+        pattern: '/^[0-9]{16}$/',
+    )]
     private ?string $creditCardNumber = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $creditCardExpiration = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[Assert\GreaterThan('today')]
+    private ?\DateInterface $creditCardExpiration = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Regex(
+        pattern: '/^[0-9]{3}$/',
+    )]
     private ?string $creditCardSecret = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Bet::class)]

@@ -52,6 +52,9 @@ class Matchs
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $status = null;
+
     public function __construct()
     {
         $this->bets = new ArrayCollection();
@@ -213,6 +216,18 @@ class Matchs
     public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

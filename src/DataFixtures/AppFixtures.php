@@ -10,6 +10,7 @@ use App\Entity\Matchs;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class AppFixtures extends Fixture
 {
@@ -82,6 +83,7 @@ class AppFixtures extends Fixture
                 ->setTeamWinner(null)
                 ->setBestOf(1)
                 ->setCompetition($competitions[0])
+                ->setDate(new \DateTime('@'.strtotime('now')))
             ;
             $manager->persist($object);
         }

@@ -23,7 +23,7 @@ class MatchsController extends AbstractController
     public function index(Request $request, BetRepository $betRepository): Response
     {
         $matchs = $this->doctrine->getRepository(Matchs::class)->findAll();
-
+        
         $bet = new Bet();
         $user = $this->getUser();
 
