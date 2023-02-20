@@ -105,5 +105,14 @@ input[type=hidden] {
 }
 
 .show {
-  @apply flex;
+  @apply flex animate-slidein;
+}
+
+@keyframes slidein {
+  from {
+    transform: translateX(-999px);
+  }
+  to {
+    transform: translateX(0);
+  }
 }

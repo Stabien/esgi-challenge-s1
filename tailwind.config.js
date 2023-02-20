@@ -32,6 +32,9 @@ module.exports = {
         999: '999',
         9999: '9999',
       },
+      animation: {
+        slidein: 'slidein 0.5s ease-out',
+      },
     },
   },
   plugins: [],
