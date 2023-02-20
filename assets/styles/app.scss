@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "beaufort";
+  font-family: 'beaufort';
   font-style: normal;
   font-weight: 400;
-  src: url("../fonts/BeaufortforLOL-Regular.ttf"); /* IE9 Compat Modes */
+  src: url('../fonts/BeaufortforLOL-Regular.ttf'); /* IE9 Compat Modes */
   // src: local(""), url("../fonts/BeaufortforLOL-Regular.ttf") format("truetype");
 }
 
@@ -21,6 +21,7 @@ body {
 }
 
 .btn {
+  border: none;
   position: relative; /* this one is new - used to contain absolute elements */
   padding: 1rem 5rem;
   color: var(--blue-primary-color);
@@ -46,7 +47,7 @@ body {
   &:after,
   &:before {
     transition: 0.5s;
-    content: "";
+    content: '';
     position: absolute;
     width: 40px;
     height: 40px;
@@ -75,9 +76,10 @@ body {
   }
 }
 
-input[type="email"],
-input[type="password"],
-input[type="text"] {
+input[type='email'],
+input[type='password'],
+input[type='text'],
+input[type='hidden'] {
   @apply bg-gray-100 px-2 py-1 rounded	outline-0;
 }
 

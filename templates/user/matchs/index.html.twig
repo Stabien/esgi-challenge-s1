@@ -103,10 +103,9 @@
   </ul>
   <div
     id="bet-modal"
-    class="fixed top-0 left-0 right-0 z-50 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full"
+    class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-x-hidden overflow-y-hidden z-999 w-full h-full flex items-center justify-center bg-black/80 "
   >
-    <div class="relative w-full h-full max-w-md md:h-auto modal-content">
-      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+      <div class="relative rounded-lg shadow bg-white w-1/2">
         <button
           type="button"
           class="icon-close-bet-modal absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
@@ -125,44 +124,36 @@
               clip-rule="evenodd"
             ></path>
           </svg>
-          <span class="sr-only">Close modal</span>
         </button>
-        <div class="p-6 text-center">
-          {{ form_start(form) }}
-            {{ form_row(form.amount) }}
-            <input type="hidden" value="" name="bet[match]" class="match-input"/>
-            <input type="hidden" value="" name="bet[team]" class="team-input"/>
+        <div class=" p-6">
+          {{ form_start(form,{'attr':{'class': 'flex justify-center items-center flex-col gap-8 '}}) }}
+            {{ form_row(form.amount,{label: false,'attr': {'class': 'task_field', 'placeholder':'Amount'}}) }}
+            <input type="hidden" value="" name="bet[match]" class="match-input input"/>
+            <input type="hidden" value="" name="bet[team]" class="team-input input"/>
             {{ form_row(form._token) }}
-            <button class="btn">{{ button_label|default('Save') }}</button>
+            <button class="btn after:bg-white before:bg-white  primary">{{ button_label|default('Bet!') }}</button>
           {{ form_end(form, {'render_rest': false}) }}
         </div>
       </div>
-    </div>
   </div>
 </div>
-<div class="bet-modal-background fixed top-0 left-0 w-screen h-screen bg-black opacity-50"></div>
+
 
 <script>
   const toggleModalButtons = document.getElementsByClassName('toggle-bet-modal')
   const modal = document.getElementById('bet-modal')
-  const betModalBackground = document.getElementsByClassName('bet-modal-background')[0]
   const iconCloseBetModal = document.getElementsByClassName('icon-close-bet-modal')[0]
   const matchInput = document.getElementsByClassName('match-input')[0]
   const teamInput = document.getElementsByClassName('team-input')[0]
-  const modalContent = document.getElementsByClassName('modal-content')[0]
-
   const closeModal = () => {
     modal.style.display = 'none'
-    betModalBackground.style.display = 'none'
   }
 
   const openModal = (target) => {
-    console.log('sdbfdbfn')
     const matchId = target.getAttribute('data-match-id')
     const teamId = target.getAttribute('data-team-id')
 
-    modal.style.display = 'block'
-    betModalBackground.style.display = 'block'
+    modal.style.display = 'flex'
     matchInput.value = matchId
     teamInput.value = teamId
   }
