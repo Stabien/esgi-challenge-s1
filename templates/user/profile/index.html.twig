@@ -16,8 +16,8 @@
         </div>
     </div>
     <div class="balance-actions mt-5 w-fit m-auto flex flex-row gap-20">
-        <button class="toggle-modal btn gold m-right-5">Make a deposit</button>
-        <button class="toggle-modal btn gold m-left-5">Make a withdrawal</button>
+        <button class="toggle-modal btn gold primary m-right-5">Make a deposit</button>
+        <button class="toggle-modal btn gold primary m-left-5">Make a withdrawal</button>
     </div>
     <div
         id="deposit-modal"
@@ -81,7 +81,7 @@
             </button>
             <div class="p-6 text-center">
             {{ form_start(formWithdrawal) }}
-              {{ form_row(formWithdrawal.amount, {'attr': {'required': 'required', 'min': '1', 'max': user.balance}, 'type': 'number'}) }}
+              {{ form_row(formWithdrawal.amount, {'attr': {'required': 'required', 'min': '1', 'max': user.balance, 'class': 'test'}, 'type': 'number'}) }}
             {{ form_end(formWithdrawal) }}
             </div>
         </div>
