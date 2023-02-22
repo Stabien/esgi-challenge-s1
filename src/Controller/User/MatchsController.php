@@ -24,7 +24,7 @@ class MatchsController extends AbstractController
     {
         $matchs = $this->doctrine->getRepository(Matchs::class)->findAll();
         $entityManager = $this->doctrine->getManager();
-        
+
         $bet = new Bet();
         $user = $this->getUser();
 
@@ -50,7 +50,6 @@ class MatchsController extends AbstractController
                 
                 $user->setBalance($user->getBalance() - $form['amount']->getData());
                 $entityManager->flush();
-
             }
             return $this->redirectToRoute('app_user_matchs');
         }
