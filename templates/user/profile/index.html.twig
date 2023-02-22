@@ -5,7 +5,7 @@
 {% block body %}
 
 <div>
-    <div class="user-informations">
+    <div class="user-informations w-fit m-auto flex flex-col justify-center">
         <div class="flex flex-row">
             <h2>Username: </h2>
             <span class="ml-2">{{ user.username }}</span>
@@ -19,15 +19,15 @@
             <span class="ml-2">{{ user.balance }}</span>
         </div>
     </div>
-    <div class="balance-actions mt-5">
-        <button class="toggle-modal">Make a deposit</button>
-        <button class="toggle-modal">Make a withdrawal</button>
+    <div class="balance-actions mt-5 w-fit m-auto flex flex-row gap-20">
+        <button class="toggle-modal btn gold m-right-5">Make a deposit</button>
+        <button class="toggle-modal btn gold m-left-5">Make a withdrawal</button>
     </div>
     <div
         id="deposit-modal"
         class="modal fixed top-28 left-0 right-0 z-10 overflow-x-hidden overflow-y-auto h-modal md:h-full"
     >
-        <div class="relative w-full h-full max-w-md md:h-auto z-20">
+        <div class="relative w-fit m-auto z-20">
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <button
             type="button"
@@ -66,12 +66,12 @@
         id="withdrawal-modal"
         class="modal fixed top-28 left-0 right-0 z-10 overflow-x-hidden overflow-y-auto h-modal md:h-full"
     >
-        <div class="relative w-full h-full max-w-md md:h-auto z-20">
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div class="relative w-fit m-auto z-20">
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 modal-2">
             <button
             type="button"
             class="icon-close-modal absolute z-20 top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-            data-modal-hide="popup-modal"
+            data-modal-hide="popup-modal" 
             >
             <svg
                 aria-hidden="true"
@@ -90,7 +90,7 @@
             </button>
             <div class="p-6 text-center">
             {{ form_start(formWithdrawal) }}
-              {{ form_row(formWithdrawal.balance, {'label': 'Amount'}) }}
+              {{ form_row(formWithdrawal.balance, {'label': 'Amount: '}) }}
                 <button class="btn">{{ button_label|default('Save') }}</button>
             {{ form_end(formWithdrawal, {'render_rest': false}) }}
             </div>

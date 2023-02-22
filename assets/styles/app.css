@@ -116,3 +116,7 @@ input[type=hidden] {
     transform: translateX(0);
   }
 }
+
+label {
+  color: white;
+}
