@@ -47,7 +47,6 @@ class MatchsController extends AbstractController
             return $this->redirectToRoute('app_user_matchs');
         }
 
-
         return $this->renderForm('user/matchs/index.html.twig', [
             'controller_name' => 'MatchsController',
             'matchs' => $matchs,
