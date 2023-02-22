@@ -13,7 +13,7 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
-            return $this->redirectToRoute('/matchs');
+            return $this->redirectToRoute('app_user_matchs');
         }
 
         // get the login error if there is one
@@ -27,6 +27,6 @@ class SecurityController extends AbstractController
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {
-        $this->reidrectToRoute('app_login');
+        $this->redirectToRoute('app_login');
     }
 }

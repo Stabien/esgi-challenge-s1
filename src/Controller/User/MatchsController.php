@@ -23,7 +23,7 @@ class MatchsController extends AbstractController
     public function index(Request $request, BetRepository $betRepository): Response
     {
         $matchs = $this->doctrine->getRepository(Matchs::class)->findAll();
-
+        
         $bet = new Bet();
         $user = $this->getUser();
 
@@ -33,6 +33,10 @@ class MatchsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if ($user === null) {
                 return $this->redirectToRoute('app_login');
+            }
+
+            if ($user->getBalance() < $form['amount']->getData()) {
+                return $this->redirectToRoute('app_user_matchs');
             }
 
             $bet->setUser($user);
@@ -47,11 +51,11 @@ class MatchsController extends AbstractController
             return $this->redirectToRoute('app_user_matchs');
         }
 
-
         return $this->renderForm('user/matchs/index.html.twig', [
             'controller_name' => 'MatchsController',
             'matchs' => $matchs,
-            'form' => $form
+            'form' => $form,
+            'user' => $this->getUser()
         ]);
     }
 }

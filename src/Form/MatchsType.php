@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Matchs;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MatchsType extends AbstractType
@@ -22,6 +23,11 @@ class MatchsType extends AbstractType
             ->add('teamTwo')
             ->add('teamWinner')
             ->add('competition')
+            ->add('status', ChoiceType::class, [
+                'Not started' => 0,
+                'On going' => 1,
+                'Ended' => 2,
+            ])
         ;
     }
 

@@ -6,23 +6,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
-use App\Entity\Team;
 
-class TeamsController extends AbstractController
+class MyBetsController extends AbstractController
 {
     public function __construct(ManagerRegistry $doctrine) 
     {
         $this->doctrine = $doctrine;
     }
 
-    #[Route('/teams', name: 'app_teams')]
+    #[Route('/mybets', name: 'app_user_my_bets')]
     public function index(): Response
     {
-        $teams = $this->doctrine->getRepository(Team::class)->findAll();
+        $bets = $this->getUser()->getBets();
 
-        return $this->render('user/teams/index.html.twig', [
-            'controller_name' => 'TeamsController',
-            'teams' => $teams
+        return $this->render('user/my_bets/index.html.twig', [
+            'controller_name' => 'MyBetsController',
+            'bets' => $bets
         ]);
     }
 }
