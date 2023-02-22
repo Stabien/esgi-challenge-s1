@@ -25,7 +25,7 @@
     </div>
     <div
         id="deposit-modal"
-        class="modal fixed top-0 left-0 right-0 z-10 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full"
+        class="modal fixed top-28 left-0 right-0 z-10 overflow-x-hidden overflow-y-auto h-modal md:h-full"
     >
         <div class="relative w-full h-full max-w-md md:h-auto z-20">
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -50,21 +50,21 @@
             <span class="sr-only">Close modal</span>
             </button>
             <div class="p-6 text-center">
-            {{ form_start(form) }}
-                {{ form_row(form.balance) }}
-                {{ form_row(form.creditCardNumber) }}
-                {{ form_row(form.creditCardExpiration) }}
-                {{ form_row(form.creditCardSecret) }}
-                {{ form_row(form._token) }}
+            {{ form_start(formDeposit) }}
+                {{ form_row(formDeposit.balance, {'label': 'Amount', 'value': 0 }) }}
+                {{ form_row(formDeposit.creditCardNumber) }}
+                {{ form_row(formDeposit.creditCardExpiration) }}
+                {{ form_row(formDeposit.creditCardSecret) }}
+                {{ form_row(formDeposit._token) }}
                 <button class="btn">{{ button_label|default('Save') }}</button>
-            {{ form_end(form, {'render_rest': false}) }}
+            {{ form_end(formDeposit, {'render_rest': false}) }}
             </div>
         </div>
         </div>
     </div>
     <div
         id="withdrawal-modal"
-        class="modal fixed top-0 left-0 right-0 z-10 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full"
+        class="modal fixed top-28 left-0 right-0 z-10 overflow-x-hidden overflow-y-auto h-modal md:h-full"
     >
         <div class="relative w-full h-full max-w-md md:h-auto z-20">
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -89,9 +89,10 @@
             <span class="sr-only">Close modal</span>
             </button>
             <div class="p-6 text-center">
-            {{ form_start(form) }}
+            {{ form_start(formWithdrawal) }}
+              {{ form_row(formWithdrawal.balance, {'label': 'Amount'}) }}
                 <button class="btn">{{ button_label|default('Save') }}</button>
-            {{ form_end(form, {'render_rest': false}) }}
+            {{ form_end(formWithdrawal, {'render_rest': false}) }}
             </div>
         </div>
         </div>
@@ -138,5 +139,8 @@
       }
     }  
   })
+
+  // Hide day select on modal deposit form
+  document.getElementById('user_creditCardExpiration_day').style.display = 'none'
 </script>
 {% endblock %}

@@ -26,8 +26,7 @@
             <div class=" bg-gold-150 text-white inline-block px-4 py-1 pb-6 translate-y-6 font-beaufort font-black italic tracking-widest">
             {{ match.date|date('d.m.Y') }}
             </div>
-            
-            <div class=" bg-gold-150 text-white inline-block px-4 py-1 pb-6 translate-y-6 font-beaufort font-black italic tracking-widest">  {{match.competition}}</div>
+            <div class=" bg-gold-150 text-white inline-block px-4 py-1 pb-6 translate-y-6 font-beaufort font-black italic tracking-widest">  {{match.date.format('d/m/y h:i')}}</div>
         </div>
         <li class="rounded-3xl relative overflow-hidden  bg-gradient-to-br from-darkBlue-50 to-darkBlue-150 text-white flex flex-col gap-4 items-center w-full">
             <img src="/assets/images/teams/fnatic.png" class="absolute h-24 -left-6 -top-6 opacity-30" alt="logo">
@@ -78,8 +77,7 @@
             <div class=" bg-gold-150 text-white inline-block px-4 py-1 pb-6 translate-y-6 font-beaufort font-black italic tracking-widest">
             {{ match.date|date('d.m.Y') }}
             </div>
-           
-            <div class="bg-gold-150 text-white inline-block px-4 py-1 pb-6 translate-y-6 font-beaufort font-black italic tracking-widest">  {{match.competition}}</div>
+            <div class=" bg-gold-150 text-white inline-block px-4 py-1 pb-6 translate-y-6 font-beaufort font-black italic tracking-widest">   {{match.date.format('d/m/y h:i')}}</div>
         </div>
         <li class="rounded-3xl relative overflow-hidden  bg-gradient-to-br from-darkBlue-50 to-darkBlue-150 text-white flex flex-col gap-4 items-center w-full">
              {% if ( match.teamOneRating > match.teamTwoRating) %}

@@ -6,6 +6,8 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Validator\Constraints\GreaterThan;
 
 class UserType extends AbstractType
 {
@@ -15,7 +17,11 @@ class UserType extends AbstractType
             ->add('username')
             ->add('email')
             ->add('creditCardNumber')
-            ->add('creditCardExpiration')
+            ->add('creditCardExpiration', DateType::class, [
+                'constraints' => [
+                    new GreaterThan('today')
+                ]
+            ])
             ->add('creditCardSecret')
             ->add('roles')
             ->add('password')
