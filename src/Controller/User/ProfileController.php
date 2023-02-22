@@ -9,6 +9,7 @@ use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\User;
 use App\Form\UserPaymentType;
+use App\Form\UserIbanType;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProfileController extends AbstractController
@@ -29,13 +30,14 @@ class ProfileController extends AbstractController
         $currentCreditCardNumber = $currentUser->getCreditCardNumber();
         $currentCreditCardExpiration = $currentUser->getCreditCardExpiration();
         $currentCreditCardSecret = $currentUser->getCreditCardSecret();
-        
-        $formWithdrawal = $this->createForm(UserPaymentType::class, $user);
-        $formWithdrawal->handleRequest($request);
-        
+        $currentIban = $currentUser->getIban();
+
         $formDeposit = $this->createForm(UserPaymentType::class, $user);
         $formDeposit->handleRequest($request);
         
+        $formWithdrawal = $this->createForm(UserIbanType::class, $user);
+        $formWithdrawal->handleRequest($request);
+
         if ($formDeposit->isSubmitted() && $formDeposit->isValid()) {
             $user->setBalance($user->getBalance() + $formDeposit['amount']->getData());
 
@@ -46,6 +48,21 @@ class ProfileController extends AbstractController
             }
 
             $entityManager->flush();
+
+            return $this->redirectToRoute('app_user_profile');
+        }
+
+        if ($formWithdrawal->isSubmitted() && $formWithdrawal->isValid()) {
+            $balance = $user->getBalance() - $formWithdrawal['amount']->getData();
+
+            if ($balance >= 0) {
+                $user->setBalance($user->getBalance() - $formWithdrawal['amount']->getData());
+
+                if ($formWithdrawal['saveIban']->getData() == false) {
+                    $user->setIban($currentIban);
+                }
+                $entityManager->flush();
+            }
 
             return $this->redirectToRoute('app_user_profile');
         }

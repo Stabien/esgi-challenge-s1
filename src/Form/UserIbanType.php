@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Validator\Constraints;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class UserPaymentType extends AbstractType
+class UserIbanType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -26,30 +26,19 @@ class UserPaymentType extends AbstractType
                     new Constraints\Callback([$this, 'validateAmount'])
                 ]
             ])
-            ->add('creditCardNumber', null, [
+            ->add('iban', null, [
                 'constraints' => [
                     new Constraints\NotBlank()
                 ]
             ])
-            ->add('creditCardExpiration', DateType::class, [
-                'constraints' => [
-                    new Constraints\NotBlank(),
-                    new Constraints\GreaterThan(value: 'today', message: 'Your card has expired')
-                ]
-            ])
-            ->add('creditCardSecret', null, [
-                'constraints' => [
-                    new Constraints\NotBlank()
-                ]
-            ])
-            ->add('saveCreditCard', CheckboxType::class, [
+            ->add('saveIban', CheckboxType::class, [
                 'mapped' => false,
-                'label'    => 'Save this credit card ',
+                'label'    => 'Save this IBAN ',
                 'required' => false,
             ])
             ->add('save', SubmitType::class, [
               'attr' => ['class' => 'save btn'],
-          ])
+            ])
         ;
     }
 
@@ -66,7 +55,7 @@ class UserPaymentType extends AbstractType
         $amount = $form['amount']->getData();
 
         if (strlen($amount) == 0 || $amount < 1 || $amount > 99999) {
-            $context->buildViolation('Amount should be minimum 1 and maximum 99 999')
+            $context->buildViolation('Amount should be minimum 1 and maximum your balance or 99 999')
                 ->atPath('amount')
                 ->addViolation();
         }

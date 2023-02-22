@@ -64,6 +64,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $creditCardExpiration = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Regex(
+        pattern: '/^[A-Z]{2}[A-Z0-9]{13,}$/',
+    )]
+    private ?string $iban = null;
+
     public function __toString()
     {
         return $this->email;
@@ -267,6 +273,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreditCardExpiration(?\DateTimeInterface $creditCardExpiration): self
     {
         $this->creditCardExpiration = $creditCardExpiration;
+
+        return $this;
+    }
+
+    public function getIban(): ?string
+    {
+        return $this->iban;
+    }
+
+    public function setIban(?string $iban): self
+    {
+        $this->iban = $iban;
 
         return $this;
     }

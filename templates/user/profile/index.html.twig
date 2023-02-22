@@ -81,9 +81,8 @@
             </button>
             <div class="p-6 text-center">
             {{ form_start(formWithdrawal) }}
-              {{ form_row(formWithdrawal.amount, {'attr': {'required': 'required', 'min': '1', 'max': '99999'}}) }}
-              {{ form_row(formWithdrawal._token) }}
-            {{ form_end(formWithdrawal, {'render_rest': false}) }}
+              {{ form_row(formWithdrawal.amount, {'attr': {'required': 'required', 'min': '1', 'max': user.balance}, 'type': 'number'}) }}
+            {{ form_end(formWithdrawal) }}
             </div>
         </div>
         </div>
