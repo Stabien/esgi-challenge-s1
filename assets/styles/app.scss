@@ -119,6 +119,10 @@ input[type='hidden'] {
 .show {
   @apply flex animate-slidein;
 }
+
+.bet-value {
+  @apply text-white z-999 font-bold rounded-t-full py-px px-8 absolute bottom-0 left-1/2 -translate-x-1/2;
+}
 @keyframes slidein {
   from {
     transform: translateX(-999px);

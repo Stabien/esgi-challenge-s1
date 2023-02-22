@@ -53,14 +53,14 @@
                 }}"
                  class="toggle-bet-modal bg-gold-150 active:bg-gold-250  rounded-bl-3xl flex justify-between items-center  py-1 px-4">
                     <span class="text-darkBlue-50  font-black">{{ match.teamOne }}</span>
-                    <span class="text-2xl font-black"> 1.5</span>
+                    <span class="text-2xl font-black"> {{ match.teamOneRating }}</span>
                 </button>
                 <button 
                   data-match-id="{{match.id}}" 
                   data-team-id="{{match.teamTwo.id}}" 
                   class="toggle-bet-modal bg-gold-150 active:bg-gold-250 w-full rounded-br-3xl flex justify-between py-1 px-4"
                 >
-                    <span class="text-2xl font-black">2.2</span>
+                    <span class="text-2xl font-black">{{ match.teamTwoRating }}</span>
                     <span class="text-darkBlue-50  font-black">{{ match.teamTwo }}</span>
                 </button>
             </div>
@@ -90,11 +90,11 @@
                 <div class="flex items-center justify-center gap-4 ">
                     <img src="/assets/images/teams/fnatic.png" class="h-12 self-start"  alt="logo">
                     <span>{{ match.teamOne }}</span>
-                    <span class='text-gold-150 text-3xl ml-8'>{{ match.teamOneRating }}</span>
+                    <span class='text-gold-150 text-3xl ml-8'>{{ match.teamOneScore }}</span>
                 </div>
                     <span class="flex items-center">vs</span>
                 <div class="flex items-center justify-center gap-4">
-                    <span class='text-gold-150 text-3xl mr-8'>{{ match.teamTwoRating }}</span>
+                    <span class='text-gold-150 text-3xl mr-8'>{{ match.teamTwoScore }}</span>
                     <span>{{ match.teamTwo }}</span>
                     <img src="/assets/images/teams/g2.png" class="h-12 self-start"  alt="logo">
                 </div>
