@@ -128,7 +128,7 @@
         </button>
         <div class=" p-6">
           {{ form_start(form,{'attr':{'class': 'flex justify-center items-center flex-col gap-8 '}}) }}
-            {{ form_row(form.amount,{label: false,'attr': {'class': 'task_field', 'placeholder':'Amount'}}) }}
+            {{ form_row(form.amount,{'label': false, 'type': 'number', 'attr': {'class': 'task_field', 'placeholder':'Amount','required': 'required', 'min': '1', 'max': user.balance}}) }}
             <input type="hidden" value="" name="bet[match]" class="match-input input"/>
             <input type="hidden" value="" name="bet[team]" class="team-input input"/>
             {{ form_row(form._token) }}
@@ -146,17 +146,20 @@
   const iconCloseBetModal = document.getElementsByClassName('icon-close-bet-modal')[0]
   const matchInput = document.getElementsByClassName('match-input')[0]
   const teamInput = document.getElementsByClassName('team-input')[0]
+
   const closeModal = () => {
     modal.style.display = 'none'
   }
 
   const openModal = (target) => {
-    const matchId = target.getAttribute('data-match-id')
-    const teamId = target.getAttribute('data-team-id')
+    const matchId = target.closest('button').getAttribute('data-match-id')
+    const teamId = target.closest('button').getAttribute('data-team-id')
 
     modal.style.display = 'flex'
     matchInput.value = matchId
     teamInput.value = teamId
+
+    console.log(matchId)
   }
 
   closeModal()
