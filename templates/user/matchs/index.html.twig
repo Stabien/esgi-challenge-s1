@@ -21,7 +21,7 @@
 <h1>Incomings matches </h1>
     <ul>
     {#  incoming matchs #}
-    {% for match in matchs|filter(m => m.date > now) %}
+    {% for match in matchs|filter(m => date(m.date) > date(now)) %}
         <div class="flex justify-between">
             <div class=" bg-gold-150 text-white inline-block px-4 py-1 pb-6 translate-y-6 font-beaufort font-black italic tracking-widest">
             {{ match.competition }}
@@ -71,7 +71,7 @@
 
     <ul>
     {#  passed matchs #}
-    {% for match in matchs|filter(m => m.date < now) %}
+    {% for match in matchs|filter(m => date(m.date) <= date(now)) %}
         <div class="flex justify-between">
             <div class=" bg-gold-150 text-white inline-block px-4 py-1 pb-6 translate-y-6 font-beaufort font-black italic tracking-widest">
             {{ match.competition }}
