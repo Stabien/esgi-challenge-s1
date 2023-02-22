@@ -23,6 +23,7 @@ class MatchsController extends AbstractController
     public function index(Request $request, BetRepository $betRepository): Response
     {
         $matchs = $this->doctrine->getRepository(Matchs::class)->findAll();
+        $entityManager = $this->doctrine->getManager();
         
         $bet = new Bet();
         $user = $this->getUser();
@@ -46,8 +47,11 @@ class MatchsController extends AbstractController
             // Verify if match has not began
             if ($bet->getMatch()->getTeamWinner() === null) {
                 $betRepository->save($bet, true);
-            }
+                
+                $user->setBalance($user->getBalance() - $form['amount']->getData());
+                $entityManager->flush();
 
+            }
             return $this->redirectToRoute('app_user_matchs');
         }
 

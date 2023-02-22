@@ -68,7 +68,6 @@
     {% endfor %}
 </ul>
 <h1>Passed matches </h1>
-
     <ul>
     {#  passed matchs #}
     {% for match in matchs|filter(m => date(m.date) <= date(now)) %}
