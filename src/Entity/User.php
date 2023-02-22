@@ -33,14 +33,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     private ?string $creditCardNumber = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    #[Assert\GreaterThan('today')]
-    private ?\DateInterface $creditCardExpiration = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Regex(
         pattern: '/^[0-9]{3}$/',
     )]
+    #[Assert\NotBlank()]
     private ?string $creditCardSecret = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Bet::class)]
@@ -64,6 +61,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?float $balance = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $creditCardExpiration = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Regex(
+        pattern: '/^[A-Z]{2}[A-Z0-9]{13,}$/',
+    )]
+    private ?string $iban = null;
+
     public function __toString()
     {
         return $this->email;
@@ -79,7 +85,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 
@@ -120,7 +126,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): self
+    public function setRoles(?array $roles): self
     {
         $this->roles = $roles;
 
@@ -130,12 +136,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see PasswordAuthenticatedUserInterface
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(?string $password): self
     {
         $this->password = $password;
 
@@ -180,18 +186,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreditCardNumber(?string $creditCardNumber): self
     {
         $this->creditCardNumber = $creditCardNumber;
-
-        return $this;
-    }
-
-    public function getCreditCardExpiration(): ?string
-    {
-        return $this->creditCardExpiration;
-    }
-
-    public function setCreditCardExpiration(?string $creditCardExpiration): self
-    {
-        $this->creditCardExpiration = $creditCardExpiration;
 
         return $this;
     }
@@ -267,6 +261,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setBalance(float $balance): self
     {
         $this->balance = $balance;
+
+        return $this;
+    }
+
+    public function getCreditCardExpiration(): ?\DateTimeInterface
+    {
+        return $this->creditCardExpiration;
+    }
+
+    public function setCreditCardExpiration(?\DateTimeInterface $creditCardExpiration): self
+    {
+        $this->creditCardExpiration = $creditCardExpiration;
+
+        return $this;
+    }
+
+    public function getIban(): ?string
+    {
+        return $this->iban;
+    }
+
+    public function setIban(?string $iban): self
+    {
+        $this->iban = $iban;
 
         return $this;
     }

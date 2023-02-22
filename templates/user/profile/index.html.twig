@@ -7,10 +7,6 @@
 <div>
     <div class="user-informations w-fit m-auto flex flex-col justify-center">
         <div class="flex flex-row">
-            <h2>Username: </h2>
-            <span class="ml-2">{{ user.username }}</span>
-        </div>
-        <div class="flex flex-row">
             <h2>Email : </h2>
             <span class="ml-2">{{ user.email }}</span>
         </div>
@@ -51,13 +47,8 @@
             </button>
             <div class="p-6 text-center">
             {{ form_start(formDeposit) }}
-                {{ form_row(formDeposit.balance, {'label': 'Amount', 'value': 0 }) }}
-                {{ form_row(formDeposit.creditCardNumber) }}
-                {{ form_row(formDeposit.creditCardExpiration) }}
-                {{ form_row(formDeposit.creditCardSecret) }}
-                {{ form_row(formDeposit._token) }}
-                <button class="btn">{{ button_label|default('Save') }}</button>
-            {{ form_end(formDeposit, {'render_rest': false}) }}
+                {{ form_row(formDeposit.amount, {'attr': {'required': 'required', 'min': '1', 'max': '99999'}, 'type': 'number'}) }}
+            {{ form_end(formDeposit) }}
             </div>
         </div>
         </div>
@@ -90,9 +81,8 @@
             </button>
             <div class="p-6 text-center">
             {{ form_start(formWithdrawal) }}
-              {{ form_row(formWithdrawal.balance, {'label': 'Amount: '}) }}
-                <button class="btn">{{ button_label|default('Save') }}</button>
-            {{ form_end(formWithdrawal, {'render_rest': false}) }}
+              {{ form_row(formWithdrawal.amount, {'attr': {'required': 'required', 'min': '1', 'max': user.balance}, 'type': 'number'}) }}
+            {{ form_end(formWithdrawal) }}
             </div>
         </div>
         </div>
@@ -141,6 +131,6 @@
   })
 
   // Hide day select on modal deposit form
-  document.getElementById('user_creditCardExpiration_day').style.display = 'none'
+  document.getElementById('user_payment_creditCardExpiration_day').style.display = 'none'
 </script>
 {% endblock %}

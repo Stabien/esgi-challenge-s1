@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BetRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BetRepository::class)]
 class Bet
@@ -15,6 +16,11 @@ class Bet
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\Range(
+        min: 1,
+        max: 99999,
+        notInRangeMessage: 'You must bet minimum 1$ and maximum 99999$ and not exceed your balance'
+    )]
     private ?float $amount = null;
 
     #[ORM\Column]

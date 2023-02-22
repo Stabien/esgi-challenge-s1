@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %} 
+{% block title %}Hello MatchsController! {% endblock %} 
+
+{% block body %}
+<style>
+  .example-wrapper {
+    margin: 1em auto;
+    max-width: 800px;
+    width: 95%;
+    font: 18px / 1.5 sans-serif;
+  }
+  .example-wrapper code {
+    adminground: #f5f5f5;
+    padding: 2px 6px;
+  }
+</style>
+
+<div class="matches example-wrapper flex flex-col gap-2">
+{% set now = "now"|date("Y-m-d H:i:s") %}
+
+<h1>Incomings matches </h1>
+    <ul>
+    {#  incoming matchs #}
+    {% for bet in bets|filter(b => date(b.match.date) >= date(now)) %}
+        <div class="flex justify-between">
+            <div class=" bg-gold-150 text-white inline-block px-4 py-1 pb-6 translate-y-6 font-beaufort font-black italic tracking-widest">
+            {{ bet.match.competition }}
+            </div>
+            <div class=" bg-gold-150 text-white inline-block px-4 py-1 pb-6 translate-y-6 font-beaufort font-black italic tracking-widest">  {{bet.match.date.format('d/m/y h:i')}}</div>
+        </div>
+        <li class="rounded-3xl relative overflow-hidden  bg-gradient-to-br from-darkBlue-50 to-darkBlue-150 text-white flex flex-col gap-4 items-center w-full">
+            <img src="/assets/images/teams/fnatic.png" class="absolute h-24 -left-6 -top-6 opacity-30" alt="logo">
+            <img src="/assets/images/teams/g2.png" class="absolute h-24 -right-6 -top-6 opacity-30" alt="logo">
+            <div class="bet-value bg-gold-150">{{ bet.team }} : {{ bet.amount  }}€ </div>
+            <div class=" w-full grid grid-cols-match gap-8 py-8 z-20 font-beaufort text-xl font-bold italic">
+                <div class="flex items-center justify-center gap-4 ">
+                    <img src="/assets/images/teams/fnatic.png" class="h-12 self-start"  alt="logo">
+                    <span>{{ bet.match.teamOne }}</span>
+                </div>
+                <span class="flex items-center">vs</span>
+                <div class="flex items-center justify-center gap-4 ">
+                    <span>{{ bet.match.teamTwo }}</span>
+                    <img src="/assets/images/teams/g2.png" class="h-12 self-start"  alt="logo">
+                </div>
+            </div>
+           
+        </li>
+    {% endfor %}
+</ul>
+<h1>Passed matches </h1>
+
+    <ul>
+    {#  passed matchs #}
+    {% for bet in bets|filter(b => date(b.match.date) <= date(now)) %}
+        <div class="flex justify-between">
+            <div class=" bg-gold-150 text-white inline-block px-4 py-1 pb-6 translate-y-6 font-beaufort font-black italic tracking-widest">
+            {{ bet.match.competition }}
+            </div>
+            <div class=" bg-gold-150 text-white inline-block px-4 py-1 pb-6 translate-y-6 font-beaufort font-black italic tracking-widest">   {{bet.match.date.format('d/m/y h:i')}}</div>
+        </div>
+        <li class="rounded-3xl relative overflow-hidden  bg-gradient-to-br from-darkBlue-50 to-darkBlue-150 text-white flex flex-col gap-4 items-center w-full">
+             {% if ( bet.match.teamOneScore > bet.match.teamTwoScore) %}
+                 <div class="absolute left-0 top-0 h-full w-full bg-gradient-to-r opacity-50 z-10 from-gradient-150 to-gradient-250 via-black"></div>
+                {% else %}  
+                 <div class="absolute left-0 top-0 h-full w-full bg-gradient-to-r opacity-50 z-10 from-gradient-250 to-gradient-150 via-black"></div>
+             {% endif %}
+               
+             
+            {% if ( bet.match.teamOneScore > bet.match.teamTwoScore )  %}
+                {% if(bet.team == bet.match.teamOne) %}
+                   <div class="bet-value bg-green-400">+ {{ bet.amount * bet.match.teamOneRating }}€</div>
+                {% else %}  
+                    <div class="bet-value bg-red-500">- {{ bet.amount }}€</div>
+                {% endif %}
+            {% else %}  
+                  {% if(bet.team == bet.match.teamOne) %}
+                    <div class="bet-value bg-red-500">- {{ bet.amount }}€</div>
+                {% else %}  
+                   <div class="bet-value bg-green-400"> + {{ bet.amount * bet.match.teamTwoRating }}€</div>
+                {% endif %}
+            {% endif %}
+             
+            
+            <img src="/assets/images/teams/fnatic.png" class="absolute h-24 -left-6 -top-6 opacity-30" alt="logo">
+            <img src="/assets/images/teams/g2.png" class="absolute h-24 -right-6 -top-6 opacity-30" alt="logo">
+            <div class="w-full grid grid-cols-match gap-8 py-8 z-20 font-beaufort text-xl font-bold italic">
+                <div class="flex items-center justify-end gap-4 ">
+                    <img src="/assets/images/teams/fnatic.png" class="h-12 self-start"  alt="logo">
+                    <span>{{ bet.match.teamOne }}</span>
+                    <span class='text-gold-150 text-3xl ml-8'>{{ bet.match.teamOneScore }}</span>
+                </div>
+                    <span class="flex items-center">vs</span>
+                <div class="flex items-center justify-start gap-4">
+                    <span class='text-gold-150 text-3xl mr-8'>{{ bet.match.teamTwoScore }}</span>
+                    <span>{{ bet.match.teamTwo }}</span>
+                    <img src="/assets/images/teams/g2.png" class="h-12 self-start"  alt="logo">
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %} 

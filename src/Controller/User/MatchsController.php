@@ -35,6 +35,10 @@ class MatchsController extends AbstractController
                 return $this->redirectToRoute('app_login');
             }
 
+            if ($user->getBalance() < $form['amount']->getData()) {
+                return $this->redirectToRoute('app_user_matchs');
+            }
+
             $bet->setUser($user);
             $bet->setStatus(0);
             $bet->setEarnings(0);
@@ -47,11 +51,11 @@ class MatchsController extends AbstractController
             return $this->redirectToRoute('app_user_matchs');
         }
 
-
         return $this->renderForm('user/matchs/index.html.twig', [
             'controller_name' => 'MatchsController',
             'matchs' => $matchs,
-            'form' => $form
+            'form' => $form,
+            'user' => $this->getUser()
         ]);
     }
 }
