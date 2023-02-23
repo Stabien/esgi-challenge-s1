@@ -131,3 +131,28 @@ input[type='hidden'] {
     transform: translateX(0);
   }
 }
+
+form[name='user_iban'],
+form[name='user_payment'] {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  label {
+    margin-right: 5px;
+    color: white;
+  }
+  .save {
+    margin: auto;
+    background-color: var(--gold-primary-color);
+    color: var(--gold-secondary-color);
+    &::after,
+    &::before {
+      background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+    }
+  }
+}
+
+form[name='user_payment'] select {
+  margin: 0 5px 0 5px;
+}
