@@ -20,6 +20,8 @@ class AppFixtures extends Fixture
         // PWD = test
         $pwd = '$2y$13$wiWVplNfdpwyWjWFdTtY..TQvVVHDVkv/PEUtf7dSlvmC2KiqlJHq';
 
+//USER FIXTURES
+
         $object = (new User())
             ->setEmail('user@user.fr')
             ->setPassword($pwd)
@@ -44,6 +46,8 @@ class AppFixtures extends Fixture
         ;
         $manager->persist($object);
 
+// COMPETITION FIXTURES
+
         $object = (new Competition())
             ->setName('LEC')
         ;
@@ -58,17 +62,45 @@ class AppFixtures extends Fixture
 
         $regions = $manager->getRepository(Region::class)->findAll();
 
-        for ($i = 0; $i < 5; $i++) {
-            $object = (new Team())
-                ->setName($faker->name)
-                ->setLogo('https://www.google.com/url?sa=i&url=https%3A%2F%2Ffr.wikipedia.org%2Fwiki%2FFnatic&psig=AOvVaw1Eq61oSnQ_nSWXr1wiecPR&ust=1675865248207000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCPCYtNjKg_0CFQAAAAAdAAAAABAD')
-                ->setRegion($faker->randomElement($regions))
-            ;
-            $manager->persist($object);
-        }
+// TEAMS FIXTURES        
 
+        $object = (new Team())
+            ->setName('100 Thieves')
+            ->setLogo('100-thieves')
+            ->setRegion($faker->randomElement($regions))
+        ;
+        $manager->persist($object);
+
+        $object = (new Team())
+            ->setName('DRX')
+            ->setLogo('drx')
+            ->setRegion($faker->randomElement($regions))
+        ;
+        $manager->persist($object);
+        $object = (new Team())
+            ->setName('JD-Gaming')
+            ->setLogo('jd-gaming')
+            ->setRegion($faker->randomElement($regions))
+        ;
+        $manager->persist($object);
+
+        $object = (new Team())
+            ->setName('Fnatic')
+            ->setLogo('fnatic')
+            ->setRegion($faker->randomElement($regions))
+        ;
+        $manager->persist($object);
+
+        $object = (new Team())
+            ->setName('T1')
+            ->setLogo('t1')
+            ->setRegion($faker->randomElement($regions))
+        ;
+        $manager->persist($object);
+    
         $manager->flush();
 
+        
         $teams = $manager->getRepository(Team::class)->findAll();
         $competitions = $manager->getRepository(Competition::class)->findAll();
 
