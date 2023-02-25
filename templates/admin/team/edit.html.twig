@@ -3,11 +3,18 @@
 {% block title %}Edit Team{% endblock %}
 
 {% block body %}
-    <h1>Edit Team</h1>
+        <h1 class="text-center font-[beaufort] text-[#c79a3c] text-6xl italic font-bold">Edit Team</h1>
+
+
+<div class='flex flex-col gap-8 max-w-[50%] m-auto flex-wrap justify-center mt-5 w-fit'>
+
 
     {{ include('admin/team/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_admin_team_index') }}">admin to list</a>
+    <a class="btn primary gold" href="{{ path('app_admin_team_index') }}">To admin team list</a>
 
     {{ include('admin/team/_delete_form.html.twig') }}
+</div>
+
+
 {% endblock %}

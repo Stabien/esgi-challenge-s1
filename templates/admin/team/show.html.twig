@@ -3,9 +3,7 @@
 {% block title %}Team{% endblock %}
 
 {% block body %}
-    <h1>Team</h1>
-
-    <table class="table">
+    {# <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -20,11 +18,29 @@
                 <td>{{ team.logo }}</td>
             </tr>
         </tbody>
-    </table>
+    </table> #}
 
-    <a href="{{ path('app_admin_team_index') }}">admin to list</a>
+        <h1 class="text-center font-[beaufort] text-[#c79a3c] text-6xl italic font-bold">Team</h1>
 
-    <a href="{{ path('app_admin_team_edit', {'id': team.id}) }}">edit</a>
-
+<div class='flex flex-row gap-8 max-w-[50%] m-auto flex-wrap justify-center mt-5'>
+                <li class="rounded-3xl relative overflow-hidden  bg-gradient-to-br from-darkBlue-50 to-darkBlue-150 text-white flex flex-col gap-4 items-center w-96">
+                 
+                 <div class="absolute left-0 top-0 h-full w-full bg-gradient-to-r opacity-20 z-10 from-gradient-150 to-gradient-250 via-black"></div>
+                     
+                     <img src="/assets/images/teams/{{ team.logo }}-logo.png" class="absolute h-24 -left-6 -top-6 opacity-30" alt="logo">
+            
+            <div class="w-fit px-10 py-8 z-20 font-beaufort text-xl font-bold italic">
+                <div class="flex items-center text-center justify-center gap-4 ">
+                    <img src="/assets/images/teams/{{ team.logo }}-logo.png" class="h-12 self-start"  alt="logo">
+                    <h1 class="uppercase">{{ team.name }}</h1>
+                     <span>{{ team.region }}</span>
+                </div>
+            </div>
+        </li>
+</div>
+<div class="flex flex-row gap-8 mt-5 justify-center">
+    <a class="btn primary gold w-fit" href="{{ path('app_admin_team_edit', {'id': team.id}) }}">Edit</a>
+    <a class="btn primary gold w-fit" href="{{ path('app_admin_team_index') }}">To admin team list</a>
     {{ include('admin/team/_delete_form.html.twig') }}
+</div>
 {% endblock %}
