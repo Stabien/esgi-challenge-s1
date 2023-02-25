@@ -3,14 +3,25 @@
 {% block title %}Hello TeamsController!{% endblock %}
 
 {% block body %}
+    <h1 class="text-center font-[beaufort] text-[#c79a3c] text-6xl italic font-bold">Team index</h1>
 
-<div>
+<div class='flex flex-row gap-8 max-w-[50%] m-auto flex-wrap justify-center mt-5'>
     {% for team in teams %}
-        <div>
-            <h2>{{ team.name }}</h2>
-            <img src="{{ team.logo }}" alt="{{ team.name }}" />
-            <span>{{ team.region }}</span>
-        </div>
+                <li class="rounded-3xl relative overflow-hidden  bg-gradient-to-br from-darkBlue-50 to-darkBlue-150 text-white flex flex-col gap-4 items-center w-96">
+                 
+                 <div class="absolute left-0 top-0 h-full w-full bg-gradient-to-r opacity-20 z-10 from-gradient-150 to-gradient-250 via-black"></div>
+                     
+                     <img src="/assets/images/teams/{{ team.logo }}-logo.png" class="absolute h-24 -left-6 -top-6 opacity-30" alt="logo">
+            
+            <div class="w-fit px-10 py-8 z-20 font-beaufort text-xl font-bold italic">
+                <div class="flex items-center text-center justify-center gap-4 ">
+                    <img src="/assets/images/teams/{{ team.logo }}-logo.png" class="h-12 self-start"  alt="logo">
+                    <h1 class="uppercase">{{ team.name }}</h1>
+                     <span>{{ team.region }}</span>
+                </div>
+            </div>
+        </li>
     {% endfor %}
 </div>
+
 {% endblock %}

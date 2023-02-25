@@ -3,35 +3,36 @@
 {% block title %}Team index{% endblock %}
 
 {% block body %}
-    <h1>Team index</h1>
+    <h1 class="text-center font-[beaufort] text-[#c79a3c] text-6xl italic font-bold">Team index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Logo</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+            <div class='flex flex-row gap-8 justify-center flex-wrap max-w-[60%] mx-auto mt-5'>
+
         {% for team in teams %}
-            <tr>
-                <td>{{ team.id }}</td>
-                <td>{{ team.name }}</td>
-                <td>{{ team.logo }}</td>
-                <td>
-                    <a href="{{ path('app_admin_team_show', {'id': team.id}) }}">show</a>
-                    <a href="{{ path('app_admin_team_edit', {'id': team.id}) }}">edit</a>
-                </td>
-            </tr>
+
+                <li class="rounded-3xl relative overflow-hidden  bg-gradient-to-br from-darkBlue-50 to-darkBlue-150 text-white flex flex-col gap-4 items-center w-fit w-[500px]">
+                 
+                 <div class="absolute left-0 top-0 h-full w-full bg-gradient-to-r opacity-20 z-10 from-gradient-150 to-gradient-250 via-black"></div>
+                     
+                     <img src="/assets/images/teams/{{ team.logo }}-logo.png" class="absolute h-24 -left-6 -top-6 opacity-30" alt="logo">
+            
+            <div class="w-fit px-10 py-8 z-20 font-beaufort text-xl font-bold italic">
+                <div class="flex items-center text-center justify-center gap-4 ">
+                    <img src="/assets/images/teams/{{ team.logo }}-logo.png" class="h-12 self-start"  alt="logo">
+                    <h1 class="uppercase">{{ team.name }}</h1>
+                     <span>{{ team.region }}</span>
+                    <a class="uppercase text-[#c79a3c]" href="{{ path('app_admin_team_show', {'id': team.id}) }}">Show</a>
+                    <a class="uppercase text-[#c79a3c]" href="{{ path('app_admin_team_edit', {'id': team.id}) }}">Edit</a>
+                </div>
+            </div>
+        </li>
+        
+
         {% else %}
             <tr>
                 <td colspan="4">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+</div>
 
-    <a href="{{ path('app_admin_team_new') }}">Create new</a>
+    <a class="mx-auto mt-10 btn gold primary w-fit " href="{{ path('app_admin_team_new') }}">Create new</a>
 {% endblock %}
