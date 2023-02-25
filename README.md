@@ -44,7 +44,8 @@ Pour lancer le serveur, exécutez la commande php bin/console server:run. Le sit
 Vous pouvez vous inscrire en créant un compte et déposer de l'argent en utilisant une carte de crédit. Une fois que vous avez de l'argent sur votre compte, vous pouvez parier sur les matchs disponibles.
 
 Les résultats des matchs sont récupérés en temps réel depuis l'API League of Legends.
-Contribuer
+
+## Contribuer
 
 Si vous souhaitez contribuer au projet, vous pouvez créer une pull request sur GitHub
 
