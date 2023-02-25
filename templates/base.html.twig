@@ -20,11 +20,29 @@
         </div>
         <ul class="nav flex gap-8  hidden md:flex ">
             <li><a href="/">Home</a></li>
+
+            {% if app.user %}
             <li><a href="/mybets">My bets</a></li>
+            {% endif %}
+
             <li><a href="/matchs">Matchs</a></li>
             <li><a href="/teams">Teams</a></li>
+
+            {% if app.user %}
             <li><a href="/profile">My Profile</a></li>
+            {% endif %}
+
+            {% if app.user and app.user.getRoles[0] == 'ROLE_ADMIN' %}
+            <li><a href="/admin">Admin</a></li>
+            {% endif %}
+
+            {% if app.user == null %}
+            <li><a href="/login">Login</a></li>
+            {% endif %}
+
+            {% if app.user %}
             <li><a href="/logout">Logout</a></li>
+            {% endif %}
         </ul>
         <div id="menu-burger" class="block md:hidden pointer">
           <span></span>
@@ -33,12 +51,30 @@
         </div>
         </nav>
          <ul id="menu-side" class="nav flex flex-col gap-8  hidden fixed h-full top-0 pt-32 px-12 w-full h-full z-999 bg-darkBlue-150 transition-all  ">
+            <li><a href="/">Home</a></li>
 
-            <li><a href="#">My bets</a></li>
+            {% if app.user %}
+            <li><a href="/mybets">My bets</a></li>
+            {% endif %}
+            
             <li><a href="/matchs">Matchs</a></li>
             <li><a href="/teams">Teams</a></li>
+
+            {% if app.user %}
             <li><a href="/profile">My Profile</a></li>
+            {% endif %}
+
+            {% if app.user and app.user.getRoles[0] == 'ROLE_ADMIN' %}
+            <li><a href="/admin">Admin</a></li>
+            {% endif %}
+
+            {% if app.user == null %}
+            <li><a href="/login">Login</a></li>
+            {% endif %}
+
+            {% if app.user %}
             <li><a href="/logout">Logout</a></li>
+            {% endif %}
         </ul>
         {% block body %}{% endblock %}
         {# templates/sendinblue/form.html.twig #}
