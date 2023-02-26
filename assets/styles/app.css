@@ -32,6 +32,10 @@
   font-weight: 500;
   font-size: 1.2rem;
 }
+.btn.small {
+  padding: 0.5rem 3rem;
+  font-size: 1rem;
+}
 .btn.primary {
   background-color: var(--blue-primary-color);
   color: var(--blue-secondary-color);
@@ -76,6 +80,10 @@ input[type=password],
 input[type=text],
 input[type=hidden] {
   @apply bg-gray-100 px-2 py-1 rounded	outline-0;
+}
+
+.title {
+  @apply font-beaufort text-gold-150 text-5xl font-bold italic underline;
 }
 
 .matches h1 {
@@ -146,4 +154,8 @@ form[name=user_payment] .save::before {
 
 form[name=user_payment] select {
   margin: 0 5px 0 5px;
+}
+
+.table tr * {
+  @apply text-center border-b-2 border-gray-200 py-3;
 }

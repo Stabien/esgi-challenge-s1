@@ -3,11 +3,11 @@
 {% block title %}Matchs index{% endblock %}
 
 {% block body %}
-    <h1>Matchs index</h1>
+    <h1 class="title mb-8 ">Matchs index</h1>
 
-    <table class="table">
+    <table class="table mx-8 ">
         <thead>
-            <tr>
+            <tr class="grid grid-cols-adminMatch">
                 <th>Id</th>
                 <th>BestOf</th>
                 <th>TeamOne</th>
@@ -22,7 +22,7 @@
         </thead>
         <tbody>
         {% for match in matchs %}
-            <tr>
+            <tr class="grid grid-cols-adminMatch">
                 <td>{{ match.id }}</td>
                 <td>{{ match.bestOf }}</td>
                 <td>{{ match.teamOne }}</td>
@@ -32,9 +32,9 @@
                 <td>{{ match.teamOneScore }}</td>
                 <td>{{ match.teamTwoScore }}</td>
                 <td>{{ match.date ? match.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_admin_matchs_show', {'id': match.id}) }}">show</a>
-                    <a href="{{ path('app_admin_matchs_edit', {'id': match.id}) }}">edit</a>
+                <td class="flex justify-center">
+                    <a class="btn  small" href="{{ path('app_admin_matchs_show', {'id': match.id}) }}">show</a>
+                    <a class="btn gold small" href="{{ path('app_admin_matchs_edit', {'id': match.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -45,5 +45,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_matchs_new') }}">Create new</a>
+    <a class="btn block" href="{{ path('app_admin_matchs_new') }}">Create new</a>
 {% endblock %}

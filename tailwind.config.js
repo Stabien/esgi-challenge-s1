@@ -27,6 +27,8 @@ module.exports = {
       },
       gridTemplateColumns: {
         match: '1fr auto 1fr',
+        adminMatch: '1fr 1fr 2fr 2fr 1fr 1fr 1fr 1fr 2fr 2fr',
+        // adminMatch: '1fr 1fr 3fr 3fr 1fr 1fr 1fr 1fr 2fr 2fr',
       },
       zIndex: {
         999: '999',
