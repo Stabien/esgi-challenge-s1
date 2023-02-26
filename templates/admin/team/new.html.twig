@@ -3,9 +3,14 @@
 {% block title %}New Team{% endblock %}
 
 {% block body %}
-    <h1>Create new Team</h1>
+        <h1 class="text-center font-[beaufort] text-[#c79a3c] text-6xl italic font-bold">Edit Team</h1>
+
+
+<div class='flex flex-col gap-8 max-w-[50%] m-auto flex-wrap justify-center mt-5 w-fit'>
 
     {{ include('admin/team/_form.html.twig') }}
 
-    <a href="{{ path('app_admin_team_index') }}">admin to list</a>
+    <a class="btn gold primary" href="{{ path('app_admin_team_index') }}">admin to list</a>
+
+</div>
 {% endblock %}
