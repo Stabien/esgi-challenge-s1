@@ -3,11 +3,11 @@
 {% block title %}Admin Users{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+    <h1 class="title mb-8 ">User index</h1>
 
-    <table class="table">
+    <table class="table  mx-8">
         <thead>
-            <tr>
+            <tr  class="grid grid-cols-12">
                 <th>Id</th>
                 <th>Username</th>
                 <th>Email</th>
@@ -24,7 +24,7 @@
         </thead>
         <tbody>
         {% for user in users %}
-            <tr>
+            <tr  class="grid grid-cols-12">
                 <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
@@ -36,9 +36,9 @@
                 <td>{{ user.balance }}</td>
                 <td>{{ user.creditCardExpiration ? user.creditCardExpiration|date('Y-m-d') : '' }}</td>
                 <td>{{ user.iban }}</td>
-                <td>
-                    <a href="{{ path('app_admin_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}">edit</a>
+                <td class="flex justify-center">
+                    <a class="btn  small" href="{{ path('app_admin_user_show', {'id': user.id}) }}">show</a>
+                    <a class="btn gold small"  href="{{ path('app_admin_user_edit', {'id': user.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
