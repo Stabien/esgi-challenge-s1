@@ -3,9 +3,9 @@
 {% block title %}New Bet{% endblock %}
 
 {% block body %}
-    <h1>Create new Bet</h1>
+    <h1 class="title">Create new Bet</h1>
 
     {{ include('admin/bet/_form.html.twig') }}
 
-    <a href="{{ path('app_admin_bet_index') }}">admin to list</a>
+    <a class=" btn gold w-fit mx-auto mt-8" href="{{ path('app_admin_bet_index') }}">admin to list</a>
 {% endblock %}

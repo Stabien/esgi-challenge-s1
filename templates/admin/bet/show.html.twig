@@ -4,9 +4,12 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Bet</h1>
+<div class="flex items-center gap-8 pl-8">
+	<a class="  title text-blue-150 inline-block w-fit"  href="{{ path('app_admin_bet_index') }}">admin to list</a>
+	{# <h1>Bet</h1> #}
+</div>
 
-	<table class="table">
+	<table class="table mx-auto mb-8">
 		<tbody>
 			<tr>
 				<th>Id</th>
@@ -27,9 +30,10 @@
 		</tbody>
 	</table>
 
-	<a href="{{ path('app_admin_bet_index') }}">admin to list</a>
-
-	<a href="{{ path('app_admin_bet_edit', {'id': bet.id}) }}">edit</a>
+  <div class="flex items-center justify-center mt-8 gap-8">
+	<a class=" btn gold" href="{{ path('app_admin_bet_edit', {'id': bet.id}) }}">edit</a>
 
 	{{ include('admin/bet/_delete_form.html.twig') }}
+    </div>
+
 {% endblock %}
