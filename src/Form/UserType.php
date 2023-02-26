@@ -40,7 +40,9 @@ class UserType extends AbstractType
 
             ])
             ->add('isVerified')
-            ->add('balance')
+            ->add('balance', null, [
+                'empty_data' => 0
+            ])
         ;
     }
 
