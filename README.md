@@ -6,7 +6,7 @@ Ce projet est un site de paris en ligne pour les matchs de League of Legends. Le
 ### Cloner le dépôt sur votre ordinateur.
 
 ```bash
-git clone https://github.com/votre-nom/votre-projet.git
+git clone https://github.com/Stabien/esgi-challenge-s1/
 ```
 
 ### Installer les dépendances avec composer install.
@@ -27,7 +27,7 @@ php bin/console doctrine:database:create
 
 
 ```bash
-php bin/console doctrine:migrations:migrate
+php bin/console make:migrations
 ```
 
 ### Exécuter les migrations avec php bin/console doctrine:migrations:migrate.

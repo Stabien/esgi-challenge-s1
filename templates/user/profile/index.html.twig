@@ -46,7 +46,7 @@
             <span class="sr-only">Close modal</span>
             </button>
             <div class="p-6 text-center">
-            {{ form_start(formDeposit) }}
+            {{ form_start(formDeposit, {'attr': {'class': 'relative'}}) }}
                 {{ form_row(formDeposit.amount, {'attr': {'required': 'required', 'min': '1', 'max': '99999'}, 'type': 'number'}) }}
             {{ form_end(formDeposit) }}
             </div>
@@ -81,7 +81,7 @@
             </button>
             <div class="p-6 text-center">
             {{ form_start(formWithdrawal) }}
-              {{ form_row(formWithdrawal.amount, {'attr': {'required': 'required', 'min': '1', 'max': user.balance, 'class': 'test'}, 'type': 'number'}) }}
+              {{ form_row(formWithdrawal.amount, {'attr': {'required': 'required', 'min': '1', 'max': user.balance}, 'type': 'number'}) }}
             {{ form_end(formWithdrawal) }}
             </div>
         </div>

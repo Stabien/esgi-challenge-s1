@@ -24,12 +24,16 @@ class UserIbanType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new Constraints\Callback([$this, 'validateAmount'])
-                ]
+                ],
+                'label_attr' => ['class' => 'block text-start'],
+                'attr' => ['class' => 'block rounded w-full'],
             ])
             ->add('iban', null, [
                 'constraints' => [
                     new Constraints\NotBlank()
-                ]
+                ],
+                'label_attr' => ['class' => 'block text-start'],
+                'attr' => ['class' => 'block'],
             ])
             ->add('saveIban', CheckboxType::class, [
                 'mapped' => false,
