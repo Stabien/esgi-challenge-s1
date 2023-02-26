@@ -104,37 +104,148 @@ class AppFixtures extends Fixture
         $teams = $manager->getRepository(Team::class)->findAll();
         $competitions = $manager->getRepository(Competition::class)->findAll();
 
-        for ($i = 0; $i < 5; $i++) {
+        //PASSED MATCH
             $object = (new Matchs())
                 ->setTeamOne($teams[0])
                 ->setTeamTwo($teams[1])
                 ->setTeamOneRating(Rand(1,5))
                 ->setTeamTwoRating(Rand(1,5))
                 ->setTeamOneScore(0)
-                ->setTeamTwoScore(0)
+                ->setTeamTwoScore(1)
                 ->setTeamWinner(null)
                 ->setBestOf(1)
                 ->setCompetition($competitions[0])
                 ->setDate(new \DateTime('@'.strtotime('now')))
             ;
             $manager->persist($object);
-        }
 
-        for ($i = 0; $i < 5; $i++) {
-            $object = (new Matchs())
-                ->setTeamOne($teams[0])
+        $object = (new Matchs())
+                ->setTeamOne($teams[2])
                 ->setTeamTwo($teams[1])
                 ->setTeamOneRating(Rand(1,5))
                 ->setTeamTwoRating(Rand(1,5))
                 ->setTeamOneScore(0)
-                ->setTeamTwoScore(0)
+                ->setTeamTwoScore(1)
                 ->setTeamWinner(null)
                 ->setBestOf(1)
                 ->setCompetition($competitions[0])
-                ->setDate(new \DateTime('@'.strtotime('2024-02-21 02:19:39.000')))
+                ->setDate(new \DateTime('@'.strtotime('now')))
             ;
             $manager->persist($object);
-        }
+
+            $object = (new Matchs())
+                ->setTeamOne($teams[0])
+                ->setTeamTwo($teams[3])
+                ->setTeamOneRating(Rand(1,5))
+                ->setTeamTwoRating(Rand(1,5))
+                ->setTeamOneScore(0)
+                ->setTeamTwoScore(1)
+                ->setTeamWinner(null)
+                ->setBestOf(1)
+                ->setCompetition($competitions[0])
+                ->setDate(new \DateTime('@'.strtotime('now')))
+            ;
+            $manager->persist($object);
+
+            $object = (new Matchs())
+                ->setTeamOne($teams[4])
+                ->setTeamTwo($teams[2])
+                ->setTeamOneRating(Rand(1,5))
+                ->setTeamTwoRating(Rand(1,5))
+                ->setTeamOneScore(0)
+                ->setTeamTwoScore(1)
+                ->setTeamWinner(null)
+                ->setBestOf(1)
+                ->setCompetition($competitions[0])
+                ->setDate(new \DateTime('@'.strtotime('now')))
+            ;
+            $manager->persist($object);
+
+            $object = (new Matchs())
+                ->setTeamOne($teams[2])
+                ->setTeamTwo($teams[1])
+                ->setTeamOneRating(Rand(1,5))
+                ->setTeamTwoRating(Rand(1,5))
+                ->setTeamOneScore(0)
+                ->setTeamTwoScore(1)
+                ->setTeamWinner(null)
+                ->setBestOf(1)
+                ->setCompetition($competitions[0])
+                ->setDate(new \DateTime('@'.strtotime('now')))
+            ;
+            $manager->persist($object);
+
+        // INCOMMING MATCH
+
+        $object = (new Matchs())
+            ->setTeamOne($teams[2])
+            ->setTeamTwo($teams[1])
+            ->setTeamOneRating(Rand(1,5))
+            ->setTeamTwoRating(Rand(1,5))
+            ->setTeamOneScore(1)
+            ->setTeamTwoScore(2)
+            ->setTeamWinner(null)
+            ->setBestOf(1)
+            ->setCompetition($competitions[0])
+            ->setDate(new \DateTime('@'.strtotime('2024-02-21 02:19:39.000')))
+        ;
+        $manager->persist($object);
+
+        $object = (new Matchs())
+            ->setTeamOne($teams[2])
+            ->setTeamTwo($teams[3])
+            ->setTeamOneRating(Rand(1,5))
+            ->setTeamTwoRating(Rand(1,5))
+            ->setTeamOneScore(1)
+            ->setTeamTwoScore(2)
+            ->setTeamWinner(null)
+            ->setBestOf(1)
+            ->setCompetition($competitions[0])
+            ->setDate(new \DateTime('@'.strtotime('2024-02-21 02:19:39.000')))
+        ;
+        $manager->persist($object);
+
+        $object = (new Matchs())
+            ->setTeamOne($teams[4])
+            ->setTeamTwo($teams[3])
+            ->setTeamOneRating(Rand(1,5))
+            ->setTeamTwoRating(Rand(1,5))
+            ->setTeamOneScore(1)
+            ->setTeamTwoScore(2)
+            ->setTeamWinner(null)
+            ->setBestOf(1)
+            ->setCompetition($competitions[0])
+            ->setDate(new \DateTime('@'.strtotime('2024-02-21 02:19:39.000')))
+        ;
+        $manager->persist($object);
+
+        $object = (new Matchs())
+            ->setTeamOne($teams[4])
+            ->setTeamTwo($teams[2])
+            ->setTeamOneRating(Rand(1,5))
+            ->setTeamTwoRating(Rand(1,5))
+            ->setTeamOneScore(1)
+            ->setTeamTwoScore(2)
+            ->setTeamWinner(null)
+            ->setBestOf(1)
+            ->setCompetition($competitions[0])
+            ->setDate(new \DateTime('@'.strtotime('2024-02-21 02:19:39.000')))
+        ;
+        $manager->persist($object);
+
+        $object = (new Matchs())
+            ->setTeamOne($teams[0])
+            ->setTeamTwo($teams[1])
+            ->setTeamOneRating(Rand(1,5))
+            ->setTeamTwoRating(Rand(1,5))
+            ->setTeamOneScore(1)
+            ->setTeamTwoScore(2)
+            ->setTeamWinner(null)
+            ->setBestOf(1)
+            ->setCompetition($competitions[0])
+            ->setDate(new \DateTime('@'.strtotime('2024-02-21 02:19:39.000')))
+        ;
+        $manager->persist($object);
         $manager->flush();
     }
 }
