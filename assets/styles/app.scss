@@ -166,3 +166,22 @@ form[name='user_payment'] select {
 .table tr * {
   @apply text-center border-b-2 border-gray-200 py-3;
 }
+
+.link {
+  position: relative;
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
+  &::after {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    // background-color: #c79a3ced;
+    @apply bg-gold-150;
+  }
+}

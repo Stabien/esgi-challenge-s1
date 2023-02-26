@@ -159,3 +159,19 @@ form[name=user_payment] select {
 .table tr * {
   @apply text-center border-b-2 border-gray-200 py-3;
 }
+
+.link {
+  position: relative;
+}
+.link:hover::after {
+  width: 100%;
+}
+.link::after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  @apply bg-gold-150;
+}
