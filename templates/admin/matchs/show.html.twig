@@ -3,9 +3,11 @@
 {% block title %}Matchs{% endblock %}
 
 {% block body %}
-    <h1>Matchs</h1>
-
-    <table class="table">
+<div class="flex items-center gap-8 pl-8">
+ <a class="  title text-blue-150 inline-block w-fit" href="{{ path('app_admin_matchs_index') }}">come back to list</a>
+    {# <h1 class="title ">Matchs</h1> #}
+</div>
+    <table class="table mx-auto mb-8">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -37,10 +39,9 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('app_admin_matchs_index') }}">admin to list</a>
-
-    <a href="{{ path('app_admin_matchs_edit', {'id': match.id}) }}">edit</a>
-
+    <div class="flex items-center justify-center mt-8 gap-8">
+        <a class=" btn gold" href="{{ path('app_admin_matchs_edit', {'id': match.id}) }}">edit</a>
     {{ include('admin/matchs/_delete_form.html.twig') }}
+    </div>
+
 {% endblock %}
