@@ -9,16 +9,9 @@
         <thead>
             <tr  class="grid grid-cols-12">
                 <th>Id</th>
-                <th>Username</th>
                 <th>Email</th>
-                <th>CreditCardNumber</th>
-                <th>CreditCardSecret</th>
                 <th>Roles</th>
-                <th>Password</th>
                 <th>IsVerified</th>
-                <th>Balance</th>
-                <th>CreditCardExpiration</th>
-                <th>Iban</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -28,14 +21,8 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.creditCardNumber }}</td>
-                <td>{{ user.creditCardSecret }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
+                <td>{{ user.roles[0] }}</td>
                 <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
-                <td>{{ user.balance }}</td>
-                <td>{{ user.creditCardExpiration ? user.creditCardExpiration|date('Y-m-d') : '' }}</td>
-                <td>{{ user.iban }}</td>
                 <td class="flex justify-center">
                     <a class="btn  small" href="{{ path('app_admin_user_show', {'id': user.id}) }}">show</a>
                     <a class="btn gold small"  href="{{ path('app_admin_user_edit', {'id': user.id}) }}">edit</a>

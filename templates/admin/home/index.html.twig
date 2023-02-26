@@ -11,9 +11,11 @@
 <div class="example-wrapper">
     <h1 class="text-3xl italic font-beaufort text-gold-150 font-black mb-8">Hello Admin</h1>
     <ul class="flex items-center gap-8">
-    <li><a class="link transition duration-150 ease-out hover:text-gold-150 small primary" href="/admin/matchs">matchs</a></li>
+    <li><a class="link transition duration-150 ease-out hover:text-gold-150 small primary" href="/admin/matchs">Matchs</a></li>
     <li><a class="link transition duration-150 ease-out hover:text-gold-150 small primary" href="/admin/team">Teams</a></li>
+    {% if app.user.getRoles[0] == 'ROLE_SUPER_ADMIN' %}
     <li><a class="link transition duration-150 ease-out hover:text-gold-150 small primary" href="/admin/user">Users</a></li>
+    {% endif %}
     </ul>
 </div>
 {% endblock %}
