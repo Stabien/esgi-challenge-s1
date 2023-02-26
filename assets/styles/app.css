@@ -175,3 +175,32 @@ form[name=user_payment] select {
   height: 2px;
   @apply bg-gold-150;
 }
+
+form[name=user_iban],
+form[name=user_payment] {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  text-align: end;
+}
+form[name=user_iban] label,
+form[name=user_payment] label {
+  text-align: start;
+}
+form[name=user_iban] .text-start,
+form[name=user_payment] .text-start {
+  text-align: start;
+}
+form[name=user_iban] .text-center,
+form[name=user_payment] .text-center {
+  text-align: center;
+}
+form[name=user_iban] .rounded,
+form[name=user_payment] .rounded {
+  border-radius: 0.25rem;
+}
+form[name=user_iban] .w-full,
+form[name=user_payment] .w-full {
+  width: 100%;
+}

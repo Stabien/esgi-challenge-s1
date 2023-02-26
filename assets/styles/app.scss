@@ -185,3 +185,27 @@ form[name='user_payment'] select {
     @apply bg-gold-150;
   }
 }
+
+form[name='user_iban'],
+form[name='user_payment'] {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  text-align: end;
+  label {
+    text-align: start;
+  }
+  .text-start {
+    text-align: start;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .rounded {
+    border-radius: 0.25rem;
+  }
+  .w-full {
+    width: 100%;
+  }
+}
