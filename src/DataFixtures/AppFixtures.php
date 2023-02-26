@@ -39,9 +39,9 @@ class AppFixtures extends Fixture
         $manager->persist($object);
 
         $object = (new User())
-            ->setEmail('moderator@user.fr')
+            ->setEmail('super-admin@user.fr')
             ->setPassword($pwd)
-            ->setRoles(["ROLE_MODERATOR"])
+            ->setRoles(["ROLE_SUPER_ADMIN"])
             ->setBalance(0)
         ;
         $manager->persist($object);
