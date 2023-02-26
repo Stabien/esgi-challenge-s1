@@ -38,9 +38,9 @@ security:
     - { path: '^/register', roles: PUBLIC_ACCESS }
     - { path: '^/matchs', roles: PUBLIC_ACCESS }
     - { path: '^/teams', roles: PUBLIC_ACCESS }
-    - { path: '/', roles: PUBLIC_ACCESS }
     - { path: ^/mybets, roles: ROLE_USER }
     - { path: ^/profile, roles: ROLE_USER }
+    - { path: '/', roles: PUBLIC_ACCESS }
 
   role_hierarchy:
     ROLE_SUPER_ADMIN: ['ROLE_ADMIN']
