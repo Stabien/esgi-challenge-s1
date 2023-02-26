@@ -24,9 +24,11 @@ class MatchsType extends AbstractType
             ->add('teamWinner')
             ->add('competition')
             ->add('status', ChoiceType::class, [
-                'Not started' => 0,
-                'On going' => 1,
-                'Ended' => 2,
+                'choices' => [
+                    'Not started' => 0,
+                    'On going' => 1,
+                    'Ended' => 2,
+                ]
             ])
         ;
     }
