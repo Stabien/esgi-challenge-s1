@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\GreaterThan;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class UserType extends AbstractType
 {
@@ -26,7 +28,17 @@ class UserType extends AbstractType
             ])
             ->add('creditCardSecret')
             ->add('password', PasswordType::class)
-            ->add('roles')
+            ->add('roles', CollectionType::class, [
+                'entry_type' => ChoiceType::class,
+                'entry_options' => [
+                    'choices' => [
+                        'user' => 'ROLE_USER',
+                        'admin' => 'ROLE_ADMIN',
+                        'super admin' => 'ROLE_SUPER_ADMIN'
+                    ]
+                ],
+
+            ])
             ->add('isVerified')
             ->add('balance')
         ;

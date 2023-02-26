@@ -19,7 +19,6 @@
         {% for user in users %}
             <tr  class="grid grid-cols-12">
                 <td>{{ user.id }}</td>
-                <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles[0] }}</td>
                 <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
@@ -36,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_user_new') }}">Create new</a>
+    <a class="btn small w-fit" href="{{ path('app_admin_user_new') }}">Create new</a>
 {% endblock %}

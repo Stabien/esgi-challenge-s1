@@ -1,4 +1,7 @@
 {{ form_start(form, {'attr': {  'class': 'flex flex-col items-center gap-8'}}) }}
-    {{ form_widget(form, {'attr': {  'class': 'flex flex-col gap-8'}}) }}
+    {{ form_row(form.email, {'attr': {  'class': 'flex flex-col gap-8'}}) }}
+    {{ form_row(form.password, {'attr': {  'class': 'flex flex-col gap-8'}}) }}
+    {{ form_row(form.roles, {'attr': {  'class': 'flex flex-col gap-8'}}) }}
+    {{ form_row(form._token)}}
     <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{{ form_end(form, {'render_rest': false}) }}
