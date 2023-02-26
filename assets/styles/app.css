@@ -175,3 +175,19 @@ form[name=user_payment] select {
   height: 2px;
   @apply bg-gold-150;
 }
+
+.home-title h1 {
+  animation: slidein 0.5s ease;
+}
+.home-title img {
+  animation: slideinRight 0.5s ease;
+}
+
+@keyframes slideinRight {
+  from {
+    transform: translateX(999px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

@@ -185,3 +185,20 @@ form[name='user_payment'] select {
     @apply bg-gold-150;
   }
 }
+
+.home-title {
+  h1 {
+    animation: slidein 0.5s ease;
+  }
+  img {
+    animation: slideinRight 0.5s ease;
+  }
+}
+@keyframes slideinRight {
+  from {
+    transform: translateX(999px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
