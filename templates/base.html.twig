@@ -32,7 +32,7 @@
             <li><a href="/profile">My Profile</a></li>
             {% endif %}
 
-            {% if app.user and app.user.getRoles[0] == 'ROLE_ADMIN' %}
+            {% if app.user and (app.user.getRoles[0] == 'ROLE_ADMIN' or app.user.getRoles[0] == 'ROLE_SUPER_ADMIN') %}
             <li><a href="/admin">Admin</a></li>
             {% endif %}
 
@@ -63,7 +63,7 @@
             <li><a href="/profile">My Profile</a></li>
             {% endif %}
 
-            {% if app.user and app.user.getRoles[0] == 'ROLE_ADMIN' %}
+            {% if app.user and (app.user.getRoles[0] == 'ROLE_ADMIN' or app.user.getRoles[0] == 'ROLE_SUPER_ADMIN') %}
             <li><a href="/admin">Admin</a></li>
             {% endif %}
 
