@@ -1,0 +1,106 @@
+<html>
+        <head></head>
+        <body>
+            <div class="title">
+                <p>Bets Of Legends</p>           
+            </div>
+
+            <div class="text">
+                <p>Bonjour champion
+                    Nous avons reçu une demande de réinitialisation de votre mot de passe. Si vous n'êtes pas à l'origine de cette demande, veuillez ignorer ce message.
+                    <br> Pour changer votre mot de passe, veuillez cliquer sur le bouton ci-dessous:</p>
+            </div>
+
+            <div class="button">
+                <a href="{{ signedUrl }}">RESET PASSWORD</a>
+            </div>
+
+            <div class="text">
+                <p>Cette action vous permettra de définir un nouveau mot de passe pour votre compte. 
+                    <br> Si vous rencontrez des difficultés, n'hésitez pas à nous contacter.</p>
+            </div>
+
+            <div class="image">
+                             <img src="https://static.wikia.nocookie.net/villains-fr/images/9/90/Jinx_LOL_Render_2.png/revision/latest?cb=20201001194043&path-prefix=fr" alt="">
+                        </div>
+        </body>
+
+        <style>
+            body {
+                max-width: 95%;
+                margin: auto;
+            }
+            .title {
+                color: #D0A85C;
+                font: italic bold 40px Beaufort for LOL, Spiegel;
+                display: flex;
+                justify-content: center;
+            }
+    
+            .title p {
+                text-align: center;
+            }
+    
+            .text {
+                font: 20px Spiegel;
+                margin-bottom: 60px;
+            }
+    
+            .image {
+                display: flex;
+                justify-content: center;
+            }
+    
+            .image::before {
+                content: "";
+                width: 200px;
+                height: 200px;
+                border-color: #D0A85C;
+                position: absolute;
+                border-style: solid;
+                align-self: center;
+                transform: rotate(45deg);
+            }
+    
+            .image img {
+                z-index: 1;
+                max-width: 200px;
+            }
+
+            .button {
+                text-align: center;
+                font: 20px Spiegel;
+                margin: 0 0 60px 0;
+            }
+
+            a {
+                padding: 5px 80px 5px 80px;
+                background-color: #0BC6E3;
+                color: #fff; 
+                text-decoration: none;
+            }
+                
+            .button::after, .button::before {
+                      content: "";
+                      position: absolute;
+                      width: 40px;
+                      height: 40px;
+                    background-color: #fff; /* to see where it is */
+                    }
+                
+            .button::before {
+                transform: translate(-75%, -75%) rotate(45deg);
+                }
+                
+            .button::after {
+                  transform: translate(-40%, 50%) rotate(45deg);
+            }
+    
+            @media screen and (max-width:1080px) {
+                body {
+                max-width: 80%;
+                margin: auto;
+                }
+            }
+        </style>
+</html>
