@@ -21,7 +21,7 @@ class HomeController extends AbstractController
         $matchs = $this->doctrine->getRepository(Matchs::class)->findAll();
 
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'controller_name' => 'Home',
             'matchs' => $matchs
         ]);
     }
