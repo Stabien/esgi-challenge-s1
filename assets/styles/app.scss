@@ -84,7 +84,9 @@
 input[type='email'],
 input[type='password'],
 input[type='text'],
-input[type='hidden'] {
+input[type='hidden'],
+input[type='number'],
+input[type='select'] {
   @apply bg-gray-100 px-2 py-1 rounded	outline-0;
 }
 .title {
