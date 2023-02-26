@@ -38,6 +38,7 @@ security:
     - { path: '^/register', roles: PUBLIC_ACCESS }
     - { path: '^/matchs', roles: PUBLIC_ACCESS }
     - { path: '^/teams', roles: PUBLIC_ACCESS }
+    - { path: '/', roles: PUBLIC_ACCESS }
     - { path: ^/, roles: ROLE_USER }
 
   role_hierarchy:

@@ -128,7 +128,11 @@
         <div class=" p-6">
           {{ form_start(form,{'attr':{'class': 'flex justify-center items-center flex-col gap-8 '}}) }}
           <div>Parier sur le match </div>
-            {{ form_row(form.amount,{label: false,'attr': {'class': 'task_field', 'placeholder':'Amount'}}) }}
+            {% if user %}
+            {{ form_row(form.amount,{'label': false, 'type': 'number', 'attr': {'class': 'task_field', 'placeholder':'Amount','required': 'required', 'min': '1', 'max': user.balance}}) }}
+            {% else %}
+            {{ form_row(form.amount,{'label': false, 'type': 'number', 'attr': {'class': 'task_field disconnected', 'placeholder':'Amount','required': 'required', 'min': '1', 'max': '99999'}}) }}
+            {% endif %}
             <input type="hidden" value="" name="bet[match]" class="match-input input"/>
             <input type="hidden" value="" name="bet[team]" class="team-input input"/>
             {{ form_row(form._token) }}
@@ -151,14 +155,18 @@
   }
 
   const openModal = (target) => {
-    const matchId = target.closest('button').getAttribute('data-match-id')
-    const teamId = target.closest('button').getAttribute('data-team-id')
+    const isUserConnected = document.getElementsByClassName('disconnected')
 
-    modal.style.display = 'flex'
-    matchInput.value = matchId
-    teamInput.value = teamId
+    if (isUserConnected.length > 0) {
+      window.location.href = '/login'
+    } else {
+      const matchId = target.closest('button').getAttribute('data-match-id')
+      const teamId = target.closest('button').getAttribute('data-team-id')
 
-    console.log(matchId)
+      modal.style.display = 'flex'
+      matchInput.value = matchId
+      teamInput.value = teamId
+    }
   }
 
   closeModal()

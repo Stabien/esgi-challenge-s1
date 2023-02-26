@@ -37,7 +37,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Regex(
         pattern: '/^[0-9]{3}$/',
     )]
-    #[Assert\NotBlank()]
     private ?string $creditCardSecret = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Bet::class)]

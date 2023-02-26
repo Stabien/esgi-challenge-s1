@@ -9,10 +9,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
 
 #[Route('/admin/matchs')]
 class MatchsController extends AbstractController
 {
+    public function __construct(ManagerRegistry $doctrine) 
+    {
+        $this->doctrine = $doctrine;
+    }
+
     #[Route('/', name: 'app_admin_matchs_index', methods: ['GET'])]
     public function index(MatchsRepository $matchsRepository): Response
     {
@@ -51,11 +57,39 @@ class MatchsController extends AbstractController
     #[Route('/{id}/edit', name: 'app_admin_matchs_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Matchs $match, MatchsRepository $matchsRepository): Response
     {
+        $entityManager = $this->doctrine->getManager();
+
         $form = $this->createForm(MatchsType::class, $match);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $matchsRepository->save($match, true);
+
+            $teamWinner = $match->getTeamWinner();
+
+            if ($teamWinner != null) {
+                $bets = $match->getBets();
+                
+                foreach ($bets as $bet) {
+                    if ($bet->getTeam() == $teamWinner) {
+                        $amount = $bet->getAmount();
+                        $rating = 0;
+
+                        if ($match->getTeamOne() == $teamWinner) {
+                            $rating = $match->getTeamOneRating();
+                        } else {
+                            $rating = $match->getTeamTwoRating();
+                        }
+
+                        $cashPrize = $rating * $amount;
+
+                        $user = $bet->getUser();
+                        $user->setBalance($user->getBalance() + $cashPrize);
+
+                        $entityManager->flush();
+                    }
+                }
+            }
 
             return $this->redirectToRoute('app_admin_matchs_index', [], Response::HTTP_SEE_OTHER);
         }

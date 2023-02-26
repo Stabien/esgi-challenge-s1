@@ -17,8 +17,8 @@ position:relative;
     {% endfor %}
 
     <h1 class="text-darkBlue-50 text-5xl font-bold mb-3 font-weight-normal">Register</h1>
+    <h2>Already have an account ? <a href="/login">Sign in here !</a></h2>
 
-    <form class=" flex flex-col items-center gap-8">
     {{ form_start(registrationForm)  }}
     <div class="flex flex-col items-center gap-4">
         {{ form_row(registrationForm.email, {label: false,'attr': {'class': 'task_field', 'placeholder':'Email'}})}}
@@ -26,15 +26,11 @@ position:relative;
             label: false,
             'attr': {'class': 'task_field', 'placeholder':'Password'}
         }) }}
-        <div class="color-purple-500">
-        {{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'task_field color-blue-500'}}) }}
-        </div>
     </div>
         <div>
             <button type="submit" class="btn gold primary">Register</button>
         </div>
     {{ form_end(registrationForm) }}
-    <form>
     <div class="hero">
         <div class="hero-background h-1/2 w-1/2 border-8 border-gold-150 absolute top-1/2 left-1/2 rotate-45 -translate-y-1/2 -translate-x-1/2 "></div>
         <img src="./assets/images/assassin2.png" class="hero h-full" alt="image" />
