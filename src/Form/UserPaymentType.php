@@ -24,14 +24,21 @@ class UserPaymentType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new Constraints\Callback([$this, 'validateAmount'])
-                ]
+                ],
+                'label_attr' => ['class' => 'block text-start'],
+                'attr' => ['class' => 'block rounded w-full'],
+
             ])
             ->add('creditCardNumber', null, [
                 'constraints' => [
                     new Constraints\NotBlank()
-                ]
+                ],
+                'label_attr' => ['class' => 'block text-start'],
+                'attr' => ['class' => 'block'],
             ])
             ->add('creditCardExpiration', DateType::class, [
+                'label_attr' => ['class' => 'block text-start'],
+                'attr' => ['class' => 'block text-start'],
                 'constraints' => [
                     new Constraints\NotBlank(),
                     new Constraints\GreaterThan(value: 'today', message: 'Your card has expired')
@@ -40,12 +47,16 @@ class UserPaymentType extends AbstractType
             ->add('creditCardSecret', null, [
                 'constraints' => [
                     new Constraints\NotBlank()
-                ]
+                ],
+                'label_attr' => ['class' => 'block text-start'],
+                'attr' => ['class' => 'block']
+                
             ])
             ->add('saveCreditCard', CheckboxType::class, [
                 'mapped' => false,
                 'label'    => 'Save this credit card ',
                 'required' => false,
+                
             ])
             ->add('save', SubmitType::class, [
               'attr' => ['class' => 'save btn'],
